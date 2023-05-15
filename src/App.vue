@@ -1,60 +1,28 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a href="/" class="navbar-brand">bezKoder</a>
-      <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/home" class="nav-link">
-            <font-awesome-icon icon="home" /> Home
-          </router-link>
-        </li>
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link">Admin Board</router-link>
-        </li>
-        <li v-if="showModeratorBoard" class="nav-item">
-          <router-link to="/mod" class="nav-link">Moderator Board</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link v-if="currentUser" to="/user" class="nav-link">User</router-link>
-        </li>
-      </div>
+    <div class="background-image"></div>
 
-      <div v-if="!currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
-        </li>
-      </div>
+    <NavBar />
 
-      <div v-if="currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link to="/profile" class="nav-link">
-            <font-awesome-icon icon="user" />
-            {{ currentUser.username }}
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>
-        </li>
-      </div>
-    </nav>
+    <Guide :guide="guideData"/>
 
     <div class="container">
       <router-view />
     </div>
+   
   </div>
 </template>
 
 <script>
+import Guide from "./components/Guide.vue";
+import NavBar from "./components/Navbar.vue";
+
 export default {
+  name:"App",
+  components: {
+    NavBar,
+    Guide,
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -79,6 +47,57 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     }
+  },
+  data() {
+    return {
+      guideData: {} 
+    };
   }
 };
 </script>
+
+<style scoped>
+
+:root {
+  --rouge: #a43f40ff;
+  --orange: #cf8665ff;
+  
+  /*temporaire*/
+  --dark-purple: #210124ff;
+  --gris: #61707dff;
+  --jet: #30323dff;
+  --oxford-blue: #0a2342ff;
+  --space-cadet: #2d3047ff;
+
+  --plat: #ced6d6ff;
+  --noir: #050406ff;
+  }
+.app {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  margin-left: 5rem; /* Pour décaler le contenu*/
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(./image/fond_accueil.jpg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; 
+  z-index: 1;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4{
+  font-family: 'Courier New', Courier, monospace;
+}
+
+</style>

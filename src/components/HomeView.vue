@@ -1,9 +1,48 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
-  </div>
+  <div class="text-overlay">
+      <h1>ALESIO</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure minima nam, reiciendis dignissimos veritatis maiores autem nemo? Aperiam porro minima at explicabo. Expedita, eos inventore debitis facere ea ab beatae!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure minima nam, reiciendis dignissimos veritatis maiores autem nemo? Aperiam porro minima at explicabo. Expedita, eos inventore debitis facere ea ab beatae!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi labore temporibus deleniti autem repudiandae suscipit perferendis velit animi. Ipsum porro rem deleniti esse beatae illum alias quibusdam aut dicta officia!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iusto voluptate inventore sit, unde quae dicta libero soluta tempora, aliquid eum dolorem aperiam repellendus obcaecati totam ducimus quam accusantium nihil!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa eius ipsa vel laudantium, maiores dolore? Ut numquam, aut porro hic sapiente magnam? Praesentium reiciendis ea obcaecati, voluptatem odit blanditiis officiis?
+      Lorem ipsum, dolor sit
+      </p>
+    </div>
 </template>
 
 <script>
@@ -22,14 +61,28 @@ export default {
         this.content = response.data;
       },
       (error) => {
-        this.content =
+        /*this.content =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
           error.message ||
-          error.toString();
+          error.toString();*/
+        this.content = "I don't know"
       }
     );
   },
 };
 </script>
+
+
+<style scoped>
+  .text-overlay {
+    position: absolute;
+    top: 50rem;
+    left: 50%;
+    transform: translate(-80%, -50%);
+    z-index: 2; 
+    text-align: left;
+    color: white;
+  }
+</style>

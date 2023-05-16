@@ -83,6 +83,6 @@ export default {
     transform: translate(-80%, -50%);
     z-index: 2; 
     text-align: left;
-    color: white;
+    color: black;
   }
 </style>

@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <div class="background-image"></div>
+    <!--<div class="background-image"></div>-->
 
     <NavBar />
 
-    <RechercheView />
 
     <div class="container">
       <router-view />
@@ -15,13 +14,13 @@
 
 <script>
 import NavBar from "./components/Navbar.vue";
-import RechercheView from './components/RechercheView.vue';
+
 
 export default {
   name:"App",
   components: {
     NavBar,
-    RechercheView,
+   
   },
   computed: {
     currentUser() {

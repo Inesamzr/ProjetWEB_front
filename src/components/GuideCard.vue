@@ -1,7 +1,7 @@
 <template>
   <div class="guide">
     <h1>{{ guide.title }}</h1>
-    <h2>Category: {{ guide.category }}</h2>
+    <h2>Categories: <span v-for="category in guide.category" :key="category._id">{{category.name}},{{" "}}</span></h2>
     <h2>Game: {{ guide.game }}</h2>
     <h3>Objective: {{ guide.objective }}</h3>
     <div>{{ guide.content }}</div>

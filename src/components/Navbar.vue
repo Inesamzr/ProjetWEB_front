@@ -16,19 +16,29 @@
                     </li>
 
                     <li class="nav-item">
-                        <a @click="log" class="nav-link">
+                        <a @click="hom" class="nav-link">
                             <font-awesome-icon
                                 :icon="['fas', 'star']"
                                 class="fa-primary"
                                 class-prefix="fa"
                             />
-                            
                         <span class="link-text">Accueil</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a @click="rech" class="nav-link">
+                            <font-awesome-icon 
+                                :icon="['fas', 'magnifying-glass']"
+                                class="fa-primary"
+                                class-prefix="fa"
+                            />
+                        <span class="link-text">Rechercher</span>
                         </a>
                     </li>
                 
                     <li class="nav-item">
-                        <a @click="rech" class="nav-link">
+                        <a class="nav-link">
                         <font-awesome-icon
                                 :icon="['fas', 'computer']"
                                 class="fa-primary"
@@ -70,6 +80,18 @@
                         <span class="link-text">Console portable</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a @click="log" class="nav-link">
+                            <font-awesome-icon 
+                                :icon="['fas', 'user']"
+                                class="fa-primary"
+                                class-prefix="fa"
+                            />
+                        <span class="link-text">Profil</span>
+                        </a>
+                    </li>
+                    
                 
                     <li class="nav-item" id="themeButton">
                         <a href="#" class="nav-link">
@@ -96,7 +118,7 @@
  
 
     import { library } from '@fortawesome/fontawesome-svg-core'
-    import { faAngleDoubleRight, faComputer, faStar, faGamepad, faMobileScreenButton, faHeadphonesSimple, faSun, faMoon} from '@fortawesome/free-solid-svg-icons'
+    import { faAngleDoubleRight, faComputer, faStar, faGamepad, faMobileScreenButton, faHeadphonesSimple, faSun, faMoon, faUser, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
     import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
     library.add(faAngleDoubleRight)
@@ -107,6 +129,9 @@
     library.add(faHeadphonesSimple)
     library.add(faSun)
     library.add(faMoon)
+    library.add(faUser)
+    library.add(faMagnifyingGlass);
+
 
 
     export default {
@@ -120,7 +145,10 @@
                 this.$router.push('/login');
             },
             rech(){
-                this.$router.push('/guides')
+                this.$router.push('/guides');
+            },
+            hom(){
+                this.$router.push('/home');
             }
         }
 
@@ -177,7 +205,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 999;
+        
     }
   
     .navbar {
@@ -187,7 +215,7 @@
         width: 100%;
         background-color: var(--bg-primary);
         transition: width 600ms ease;
-        z-index: 1000;
+      
     }
 
     .navbar-nav {
@@ -227,6 +255,8 @@
         filter: grayscale(0%) opacity(1);
         background: var(--bg-secondary);
         color: var(--text-secondary);
+        
+        
     }
 
     .link-text {
@@ -238,6 +268,7 @@
         width: 2rem;
         min-width: 2rem;
         margin: 0 1.5rem;
+        
         /*filter: grayscale(100%) opacity(0.7);*/
     
         
@@ -274,6 +305,7 @@
     .logo svg {
         transform: rotate(0deg);
         transition: var(--transition-speed);
+        
     }
     
     .logo-text{
@@ -286,10 +318,14 @@
     .navbar:hover .logo-text {
         display: inline; 
         left: 20%;
+        
+        
     }
 
     .navbar:hover .logo svg {
         transform: rotate(-540deg);
+        
+        
     }
 
     /* Small screens */
@@ -322,13 +358,13 @@
     /* Large screens */
     @media only screen and (min-width: 600px) {
         .navbar {
-        top: 0;
-        width: 5rem;
-        height: 100vh;
+            top: 0;
+            width: 5rem;
+            height: 100vh;
         }
     
         .navbar:hover {
-        width: 14.5rem;
+            width: 14.5rem;
         }
     
         .navbar:hover .link-text {

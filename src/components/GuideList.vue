@@ -15,6 +15,7 @@
 <script>
 import GuideCard from './GuideCard.vue';
 import axios from 'axios';
+import {apiUrl} from '../configs/api.config'
 
 export default {  
 
@@ -34,8 +35,9 @@ export default {
   methods: {
     fetchGuides() {
       axios
-        .get('/api/guides')
+        .get(apiUrl+'/guides')
         .then(response => {
+          console.log(response.data)
           this.guides = response.data;
         })
         .catch(error => {

@@ -4,7 +4,7 @@
 
     <NavBar />
 
-    <Guide :guide="guideData"/>
+    <RechercheView />
 
     <div class="container">
       <router-view />
@@ -14,14 +14,14 @@
 </template>
 
 <script>
-import Guide from "./components/Guide.vue";
 import NavBar from "./components/Navbar.vue";
+import RechercheView from './components/RechercheView.vue';
 
 export default {
   name:"App",
   components: {
     NavBar,
-    Guide,
+    RechercheView,
   },
   computed: {
     currentUser() {
@@ -48,11 +48,7 @@ export default {
       this.$router.push('/login');
     }
   },
-  data() {
-    return {
-      guideData: {} 
-    };
-  }
+  
 };
 </script>
 

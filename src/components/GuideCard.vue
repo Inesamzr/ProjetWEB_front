@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "Guide",
+  name: "GuideCard",
   props: {
     guide: {
       type: Object,
@@ -24,6 +24,8 @@ export default {
 
 <style>
 .guide {
-  margin: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 </style>

@@ -61,13 +61,13 @@ export default {
         this.content = response.data;
       },
       (error) => {
-        /*this.content =
+        this.content =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
           error.message ||
-          error.toString();*/
-        this.content = "I don't know"
+          error.toString();
+        /*this.content = "I don't know"*/
       }
     );
   },

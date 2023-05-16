@@ -28,7 +28,7 @@
                     </li>
                 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a @click="rech" class="nav-link">
                         <font-awesome-icon
                                 :icon="['fas', 'computer']"
                                 class="fa-primary"
@@ -93,7 +93,6 @@
 </template>
 
 <script>
-  // Votre code JavaScript ici
  
 
     import { library } from '@fortawesome/fontawesome-svg-core'
@@ -119,6 +118,9 @@
         methods: {
             log(){
                 this.$router.push('/login');
+            },
+            rech(){
+                this.$router.push('/guides')
             }
         }
 

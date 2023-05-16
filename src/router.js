@@ -2,13 +2,14 @@ import { createWebHistory, createRouter } from "vue-router";
 import HomeView from "./components/HomeView.vue";
 import LoginView from "./components/LoginView.vue";
 import RegisterView from "./components/RegisterView.vue";
+import RechercheView from "./components/RechercheView.vue";
 
 // lazy-loaded
 const ProfileView = () => import("./components/ProfileView.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
 const BoardModerator = () => import("./components/BoardModerator.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
-const Guide = () => import("./components/Guide.vue")
+/*const GuideList = () => import("./components/GuideList.vue")*/
 
 
 
@@ -57,7 +58,7 @@ const routes = [
   {
     path:"/guides",
     name:"guide",
-    component : Guide,
+    component : RechercheView,
   }
 ];
 

@@ -36,6 +36,8 @@
                         <span class="link-text">Rechercher</span>
                         </a>
                     </li>
+
+                    
                 
                     <li class="nav-item">
                         <a class="nav-link">
@@ -111,7 +113,7 @@
                 </ul>
             </div>
         </nav>        
-    </div>
+    </div> 
 </template>
 
 <script>
@@ -149,9 +151,8 @@
             },
             hom(){
                 this.$router.push('/home');
-            }
+            },
         }
-
     };
 
 </script>
@@ -209,7 +210,7 @@
     }
   
     .navbar {
-        position: fixed;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;

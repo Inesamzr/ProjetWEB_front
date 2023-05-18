@@ -3,12 +3,14 @@ import HomeView from "./components/HomeView.vue";
 import LoginView from "./components/LoginView.vue";
 import RegisterView from "./components/RegisterView.vue";
 import RechercheView from "./components/RechercheView.vue";
+import GuideCreationView from "./components/GuideCreationView.vue";
 
 // lazy-loaded
 const ProfileView = () => import("./components/ProfileView.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
 const BoardModerator = () => import("./components/BoardModerator.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
+/*const GuideCreationView = () => import("./components/GuideCreationView.vue")*/
 /*const GuideList = () => import("./components/GuideList.vue")*/
 
 
@@ -59,6 +61,11 @@ const routes = [
     path:"/guides",
     name:"guide",
     component : RechercheView,
+  },
+  {
+    path:"/guides/createguide",
+    name:"createguide",
+    component : GuideCreationView,
   }
 ];
 

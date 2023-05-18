@@ -2,15 +2,17 @@
   <div class="input-group">
     <input required="" autocomplete="off" type="text" name="text" v-model="searchTerm" @input="handleSearch" />
     <label class="user-label">Rechercher guide</label>
+
     <button class="button-send" @click="sendSearch">
-        <font-awesome-icon :icon="['fas', 'check']"
-        class="fa-orange" />
+      <font-awesome-icon :icon="['fas', 'check']"
+      class="fa-orange" />
     </button>
+
     <button class= "button-clear" @click="clearSearch">
-        <font-awesome-icon :icon="['fas', 'times']"
-        class="fa-red" />
-    </button>
-    
+      <font-awesome-icon :icon="['fas', 'times']"
+      class="fa-red" />
+    </button >
+     
   </div>
 </template>
 
@@ -23,6 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faTimes)
 library.add(faCheck)
+
 
 export default {
   name: 'InputRecherche',

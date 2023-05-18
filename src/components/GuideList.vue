@@ -1,5 +1,5 @@
 <template>
-    <div class="guide-list">
+    <div class="guide-list"> 
         <h1>Guides</h1>
         <ul >
             <li v-for="guide in guides" :key="guide._id">

@@ -1,11 +1,11 @@
-<template>
+<template> 
   <div class="guide">
     <h1>{{ guide.title }}</h1>
-    <h2>Categories: <span v-for="category in guide.category" :key="category._id">{{category.name}},{{" "}}</span></h2>
-    <h2>Game: {{ guide.game }}</h2>
-    <h3>Objective: {{ guide.objective }}</h3>
-    <div>{{ guide.content }}</div>
-    <p>Author: {{ guide.author }}</p>
+    <h2>Jeu: {{guide.game.name}}</h2>
+    <h2>Categories: <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></h2> 
+    <h3>Objectif(s): {{ guide.objective }}</h3>
+    <div class="content">{{ guide.content }}</div>
+    <p>Author: {{ guide.author.username }}</p>
     <p>Created at: {{ guide.created_at }}</p>
   </div>
 </template>

@@ -75,6 +75,7 @@ export default {
     handleLogin(user) {
       this.loading = true;
 
+//Remplacer par local storage
       this.$store.dispatch("auth/login", user).then(
         () => {
           this.$router.push("/profile");

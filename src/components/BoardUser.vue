@@ -3,7 +3,7 @@
     <header class="jumbotron">
       <h3>{{ content }}</h3>
     </header>
-  </div>
+  </div> 
 </template>
 
 <script>

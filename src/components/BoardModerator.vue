@@ -4,7 +4,7 @@
       <h3>{{ content }}</h3>
     </header>
   </div>
-</template>
+</template> 
 
 <script>
 import UserService from "../services/user.service";

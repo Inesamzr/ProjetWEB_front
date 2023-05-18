@@ -45,7 +45,9 @@ export default {
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
-    }
+    },
+    
+
   },
   
 };
@@ -74,7 +76,7 @@ export default {
 }
 
 .container {
-  margin-left: 5rem; /* Pour décaler le contenu*/
+  margin-left: 15rem; /* Pour décaler le contenu*/
 }
 
 .background-image {

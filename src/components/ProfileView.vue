@@ -29,10 +29,10 @@ export default {
   name: 'ProfileView',
   computed: {
     currentUser() {
-      return this.$store.state.auth.user;
+      return localStorage.getItem("userInfo")
     },
     token() {
-      return this.$store.state.auth.token;
+      return localStorage.getItem("token");
     }
   },
   mounted() {

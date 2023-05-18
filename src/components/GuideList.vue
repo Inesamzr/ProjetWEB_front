@@ -24,6 +24,7 @@ export default {
   components: {
     GuideCard,
   },
+ 
   data() {
     return {
       guides: [] // Tableau pour stocker les guides récupérés

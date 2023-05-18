@@ -30,10 +30,16 @@ export default {
     InputRecherche,
     FontAwesomeIcon
   },
+
+  
+
   methods:{
     add(){
-      this.$router.push("/guides/createguide")
-    }
+      this.$router.push("/guides/createguide");
+    },
+    
+    
+
   }
 };
 </script>

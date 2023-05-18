@@ -81,17 +81,27 @@ export default {
       this.loading = true;
 
       axios
-      .post(apiUrl+"auth/login",user)
+      .post(apiUrl+"/auth/signin",user)
       .then(response => {
-        const token = response.data.token;
-        const userInfo = response.data.userInfo;
-
+        
+        const user = response.data
+        const token = user.token;
+        const userInfo = {
+          userId : user.id,
+          username : user.username,
+          email : user.email,
+          roles : user.roles
+        }
+        this.loading = false;
         localStorage.setItem("token",token);
         localStorage.setItem("userInfo",JSON.stringify(userInfo));
 
-        this.$router.push("/profile");
+        //this.$router.push("/profile");
+        this.$router.back()
+        console.log(this.$router)
       })
       .catch(error => {
+        console.log(error)
         this.loading = false;
         this.message = 
           (error.response &&

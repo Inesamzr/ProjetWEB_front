@@ -82,18 +82,33 @@
                         <span class="link-text">Console portable</span>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a @click="log" class="nav-link">
-                            <font-awesome-icon 
-                                :icon="['fas', 'user']"
-                                class="fa-primary"
-                                class-prefix="fa"
-                            />
-                        <span class="link-text">Profil</span>
-                        </a>
-                    </li>
                     
+                    <div v-if="!currentUser" class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <router-link to="/register" class="nav-link">
+                                <font-awesome-icon icon="user-plus" /> Sign Up
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/login" class="nav-link">
+                                <font-awesome-icon icon="sign-in-alt" /> Login
+                            </router-link>
+                        </li>
+                    </div>
+
+                    <div v-if="currentUser" class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <router-link to="/profile" class="nav-link">
+                                <font-awesome-icon icon="user" />
+                                {{ currentUser.username }}
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" @click.prevent="logOut">
+                                <font-awesome-icon icon="sign-out-alt" /> LogOut
+                            </a>
+                        </li>
+                    </div>
                 
                     <li class="nav-item" id="themeButton">
                         <a href="#" class="nav-link">
@@ -120,7 +135,7 @@
  
 
     import { library } from '@fortawesome/fontawesome-svg-core'
-    import { faAngleDoubleRight, faComputer, faStar, faGamepad, faMobileScreenButton, faHeadphonesSimple, faSun, faMoon, faUser, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+    import { faUserPlus, faSignInAlt , faAngleDoubleRight, faComputer, faStar, faGamepad, faMobileScreenButton, faHeadphonesSimple, faSun, faMoon, faUser, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
     import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
     library.add(faAngleDoubleRight)
@@ -132,6 +147,8 @@
     library.add(faSun)
     library.add(faMoon)
     library.add(faUser)
+    library.add(faUserPlus)
+    library.add(faSignInAlt)
     library.add(faMagnifyingGlass);
 
 
@@ -142,6 +159,25 @@
         components: {
             FontAwesomeIcon
         },
+        computed:{
+            currentUser() {
+                return this.$store.state.auth.user;
+            },
+            showAdminBoard() {
+                if (this.currentUser && this.currentUser['roles']) {
+                    return this.currentUser['roles'].includes('ROLE_ADMIN');
+                }
+
+                return false;
+            },
+            showModeratorBoard() {
+                if (this.currentUser && this.currentUser['roles']) {
+                    return this.currentUser['roles'].includes('ROLE_MODERATOR');
+                }
+
+                return false;
+            }
+        },
         methods: {
             log(){
                 this.$router.push('/login');
@@ -151,6 +187,10 @@
             },
             hom(){
                 this.$router.push('/home');
+            },
+            logOut() {
+                this.$store.dispatch('auth/logout');
+                this.$router.push('/login');
             },
         }
     };

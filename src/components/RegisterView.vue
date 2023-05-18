@@ -50,6 +50,9 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import axios from "axios";
+import { apiUrl } from '../configs/api.config';
+
 
 export default {
   name: "RegisterView",
@@ -99,14 +102,16 @@ export default {
       this.message = "";
       this.successful = false;
       this.loading = true;
+      
 
-      this.$store.dispatch("auth/register", user).then(
-        (data) => {
-          this.message = data.message;
-          this.successful = true;
-          this.loading = false;
-        },
-        (error) => {
+      axios
+      .post(apiUrl+"/auth/register",user)
+      .then((response) => {
+        this.message = response.data.message;
+        this.successful = true;
+        this.loading = false;
+      })
+      .catch((error) => {
           this.message =
             (error.response &&
               error.response.data &&
@@ -115,13 +120,12 @@ export default {
             error.toString();
           this.successful = false;
           this.loading = false;
-        }
-      );
+      });
     },
   },
 };
 </script>
 
 <style scoped>
-/* Vous pouvez y ajouter le code CSS que vous souhaitez utiliser pour personnaliser le style de votre composant. Par exemple, vous pouvez ajouter des règles de style pour modifier les couleurs de fond, les polices, les marges, etc. selon vos préférences esthétiques. */
+
 </style>

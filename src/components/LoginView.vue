@@ -41,6 +41,11 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import axios from "axios";
+import {apiUrl} from '../configs/api.config'
+
+//import axios from "axios";
+//import {apiUrl} from '../configs/api.config'
 
 export default {
   name: "LoginView",
@@ -75,26 +80,79 @@ export default {
     handleLogin(user) {
       this.loading = true;
 
-//Remplacer par local storage
-      this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.$router.push("/profile");
-        },
-        (error) => {
-          this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-        }
-      );
+      axios
+      .post(apiUrl+"auth/login",user)
+      .then(response => {
+        const token = response.data.token;
+        const userInfo = response.data.userInfo;
+
+        localStorage.setItem("token",token);
+        localStorage.setItem("userInfo",JSON.stringify(userInfo));
+
+        this.$router.push("/profile");
+      })
+      .catch(error => {
+        this.loading = false;
+        this.message = 
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      });
+
+
+
+
+
+
+      //Remplacer par local storage
+      //this.$store.dispatch("auth/login", user).then(
+        //() => {
+          //this.$router.push("/profile");
+        //},
+        //(error) => {
+          //this.loading = false;
+          //this.message =
+            //(error.response &&
+              //error.response.data &&
+              //error.response.data.message) ||
+            //error.message ||
+            //error.toString();
+        //}
+      //);
     },
+      //Remplacer par local storage
+      //axios
+      //.post(apiUrl+"/login", user)
+      //.then(() => {
+        //this.$store.dispatch("auth/login", user).then(
+          //() => {
+            //this.$router.push("profile");
+          //}
+        //)
+        
+      //})
+      //.catch((error) => {
+        //bloc d'erreur
+      //})
+      //this.$store.dispatch("auth/login", user).then(
+        //() => {
+          //this.$router.push("/profile");
+        //},
+        //(error) => {
+          //this.loading = false;
+          //this.message =
+            //(error.response &&
+              //error.response.data &&
+              //error.response.data.message) ||
+            //error.message ||
+            //error.toString();
+        
   },
 };
 </script>
 
 <style scoped>
-/* Vous pouvez y ajouter le code CSS que vous souhaitez utiliser pour personnaliser le style de votre composant. Par exemple, vous pouvez ajouter des règles de style pour modifier les couleurs de fond, les polices, les marges, etc. selon vos préférences esthétiques. */
+
 </style>

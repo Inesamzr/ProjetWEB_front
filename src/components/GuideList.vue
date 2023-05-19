@@ -2,7 +2,7 @@
     <div class="guide-list"> 
         <h1>Guides</h1>
         <ul >
-            <li v-for="guide in guides" :key="guide._id">
+            <li v-for="guide in filteredGuides" :key="guide._id">
                 <GuideCard :guide="guide" />
             </li>
             <li v-if="guides.length === 0"> 
@@ -27,12 +27,25 @@ export default {
  
   data() {
     return {
-      guides: [] //liste de tous les guides
+      guides: [], //liste de tous les guides
+      searchTerm: '',
     };
   },
   created() {
     this.fetchGuides();
   },
+  computed: {
+    filteredGuides() {
+      if (this.searchTerm && this.searchTerm.length > 0) {
+        return this.guides.filter(guide => {
+          return (guide.title ?? '').toLowerCase().includes(this.searchTerm.toLowerCase());
+        });
+      } else {
+        return this.guides;
+      }
+    },
+  },
+
   methods: {
     fetchGuides() {
       axios
@@ -45,11 +58,7 @@ export default {
           console.error(error);
         });
     },
-    /*filterGuides() {
-      return this.guides.filter(guide => {
-        return guide.title.toLowerCase().includes(this.searchTerm.toLowerCase());
-      });
-  },*/
+    
 
   }
 };

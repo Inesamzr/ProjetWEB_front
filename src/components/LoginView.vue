@@ -44,8 +44,7 @@ import * as yup from "yup";
 import axios from "axios";
 import {apiUrl} from '../configs/api.config'
 
-//import axios from "axios";
-//import {apiUrl} from '../configs/api.config'
+
 
 export default {
   name: "LoginView",
@@ -96,9 +95,8 @@ export default {
         localStorage.setItem("token",token);
         localStorage.setItem("userInfo",JSON.stringify(userInfo));
 
-        //this.$router.push("/profile");
-        this.$router.back()
-        console.log(this.$router)
+        this.$router.push("/profile");
+        
       })
       .catch(error => {
         console.log(error)

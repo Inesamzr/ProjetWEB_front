@@ -161,7 +161,15 @@
         },
         computed:{
             currentUser() {
-                return this.$store.state.auth.user;
+
+                var user = localStorage.getItem("userInfo")
+                console.log(user);
+                if(user != ""){
+                    user = JSON.parse(user);
+                    
+                }
+                return user;
+
             },
             showAdminBoard() {
                 if (this.currentUser && this.currentUser['roles']) {
@@ -189,8 +197,8 @@
                 this.$router.push('/home');
             },
             logOut() {
-                this.$store.dispatch('auth/logout');
-                this.$router.push('/login');
+                localStorage.setItem("userInfo","");
+                this.$router.push('/home');
             },
         }
     };

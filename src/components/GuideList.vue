@@ -27,7 +27,7 @@ export default {
  
   data() {
     return {
-      guides: [] // Tableau pour stocker les guides récupérés
+      guides: [] //liste de tous les guides
     };
   },
   created() {
@@ -44,7 +44,13 @@ export default {
         .catch(error => {
           console.error(error);
         });
-    }
+    },
+    /*filterGuides() {
+      return this.guides.filter(guide => {
+        return guide.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
+  },*/
+
   }
 };
 </script>
@@ -72,5 +78,5 @@ export default {
 .h1{
   margin-left: 100px;
 }
-
+ 
 </style>

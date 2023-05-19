@@ -105,11 +105,12 @@ export default {
       
 
       axios
-      .post(apiUrl+"/auth/register",user)
+      .post(apiUrl+"/auth/signup",user)
       .then((response) => {
         this.message = response.data.message;
         this.successful = true;
         this.loading = false;
+        this.$router.push("/login");
       })
       .catch((error) => {
           this.message =

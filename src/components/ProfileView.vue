@@ -11,7 +11,7 @@
     </p>
     <p>
       <strong>Id:</strong>
-      {{currentUser.id}}
+      {{currentUser.userId}}
     </p>
     <p>
       <strong>Email:</strong>
@@ -29,7 +29,7 @@ export default {
   name: 'ProfileView',
   computed: {
     currentUser() {
-      return localStorage.getItem("userInfo")
+      return JSON.parse(localStorage.getItem("userInfo"));
     },
     token() {
       return localStorage.getItem("token");

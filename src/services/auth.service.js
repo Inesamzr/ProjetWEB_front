@@ -1,10 +1,11 @@
+import { apiUrl } from '@/configs/api.config';
 import axios from 'axios';
+import store from'@/store/store';
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = apiUrl+ "/auth/";
 
 class AuthService {
   login(user) {
-      console.log(user)
     return axios
       .post(API_URL + 'signin', {
         username: user.username,
@@ -13,9 +14,10 @@ class AuthService {
       .then(response => {
         if (response.data) {
             localStorage.setItem('token', JSON.stringify(response.data.token));
+            store.commit('CHANGE_TOKEN',response.data.token)
             delete response.data.token
-          localStorage.setItem('user', JSON.stringify(response.data));
-          console.log(response.data)
+          localStorage.setItem('userInfo', JSON.stringify(response.data));
+          store.commit('CHANGE_USER',response.data)
         }
 
         return response.data;
@@ -23,7 +25,7 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('userInfo');
   }
 
   register(user) {

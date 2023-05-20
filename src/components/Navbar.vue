@@ -137,6 +137,7 @@
     import { library } from '@fortawesome/fontawesome-svg-core'
     import { faUserPlus, faSignInAlt , faAngleDoubleRight, faComputer, faStar, faGamepad, faMobileScreenButton, faHeadphonesSimple, faSun, faMoon, faUser, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
     import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+    import store from'@/store/store';
 
     library.add(faAngleDoubleRight)
     library.add(faComputer)
@@ -162,14 +163,7 @@
         computed:{
             currentUser() {
 
-                var user = localStorage.getItem("userInfo")
-                console.log(user);
-                if(user != ""){
-                    user = JSON.parse(user);
-                    
-                }
-                return user;
-
+                return store.getters.getUser;
             },
             showAdminBoard() {
                 if (this.currentUser && this.currentUser['roles']) {
@@ -197,7 +191,10 @@
                 this.$router.push('/home');
             },
             logOut() {
-                localStorage.setItem("userInfo","");
+                localStorage.removeItem("userInfo");
+                store.commit('CHANGE_USER',null);
+                localStorage.removeItem('token');
+                store.commit('CHANGE_TOKEN',"");
                 this.$router.push('/home');
             },
         }

@@ -50,8 +50,9 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import axios from "axios";
-import { apiUrl } from '../configs/api.config';
+import store from'@/store/store';
+
+import AuthService from "../services/auth.service";
 
 
 export default {
@@ -89,7 +90,7 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
+      return store.getters.getUser;
     },
   },
   mounted() {
@@ -104,10 +105,9 @@ export default {
       this.loading = true;
       
 
-      axios
-      .post(apiUrl+"/auth/signup",user)
-      .then((response) => {
-        this.message = response.data.message;
+      AuthService.register(user)
+
+      .then(() => {
         this.successful = true;
         this.loading = false;
         this.$router.push("/login");

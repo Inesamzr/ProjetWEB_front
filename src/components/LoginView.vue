@@ -41,8 +41,9 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import axios from "axios";
-import {apiUrl} from '../configs/api.config'
+
+import AuthService from'../services/auth.service'
+import store from'@/store/store';
 
 
 
@@ -67,7 +68,7 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
+      return store.getters.getUser;
     },
   },
   created() {
@@ -78,25 +79,10 @@ export default {
   methods: {
     handleLogin(user) {
       this.loading = true;
-
-      axios
-      .post(apiUrl+"/auth/signin",user)
-      .then(response => {
-        
-        const user = response.data
-        const token = user.token;
-        const userInfo = {
-          userId : user.id,
-          username : user.username,
-          email : user.email,
-          roles : user.roles
-        }
+      AuthService.login(user)
+      .then(() => {
         this.loading = false;
-        localStorage.setItem("token",token);
-        localStorage.setItem("userInfo",JSON.stringify(userInfo));
-
-        this.$router.push("/profile");
-        
+        this.$router.push('/home');
       })
       .catch(error => {
         console.log(error)

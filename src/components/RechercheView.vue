@@ -58,8 +58,6 @@ export default {
     },
     handleSearch() {
       // Exécuter une action lorsque l'utilisateur saisit un terme de recherche
-      // Vous pouvez émettre un événement ou appeler une méthode pour traiter la recherche
-      //this.$emit('search', this.searchTerm);
       if(this.searchTerm.length > 3){
         this.$emit('search', this.searchTerm);
       }
@@ -68,13 +66,10 @@ export default {
       // Réinitialiser le terme de recherche et effacer le champ de recherche
       this.searchTerm = '';
       this.handleSearch();
+      
     },
-    //filterGuides() {
-      //this.$emit('filter-guides', this.searchTerm);
-    //},
     sendSearch() {
       // Exécuter une action lorsque l'utilisateur clique sur le bouton de recherche
-      // Vous pouvez implémenter votre logique de recherche ici
       console.log('Recherche effectuée:', this.searchTerm);
       this.$refs.guideList.searchTerm = this.searchTerm;
       

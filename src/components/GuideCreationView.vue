@@ -68,35 +68,13 @@ data() {
           const token = localStorage.getItem('token'); 
           return token;
         },
-
-        submitGuide() {
-
-        //récupération du token
-        const token = this.getAuthToken();
-
-
-        //ajouter le token à l'entete de la requête
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        
-        axios
-        .post(apiUrl+'/guides',this.guideData,config)
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.error(error);
-        });
-        },
-
         fetchCategories(){
+          console.log('Calling fetchCategories');
           axios
           .get(apiUrl+'/catguides')
           .then(response => {
-              this.categoriesData = response.data.catguides;
+            console.log('Response from fetchCategories:', response);
+            this.categoriesData = response.data.catguides;
         
           })
           .catch(error => {
@@ -105,15 +83,49 @@ data() {
         },
 
         fetchGames(){
+          console.log('Calling fetchGames');
             axios
             .get(apiUrl+'/jeu')
             .then(response => {
-                this.gamesData = response.data.jeux;
+              console.log('Response from fetchGames:', response);
+              this.gamesData = response.data.jeux;
             })
             .catch(error => {
                 console.error(error)
             });
         },
+
+        submitGuide() {
+
+
+        const token = this.getAuthToken();
+        console.log(token);
+        //ajouter le token à l'entete de la requête
+        const headers = {
+          Authorization: `Bearer ${ token }`,
+        }; 
+        
+        const guideData = {
+          title: this.guideData.title,
+          category: this.guideData.category,
+          game: this.guideData.game,
+          objective: this.guideData.objective,
+          content: this.guideData.content,
+          author: this.guideData.author,
+        };
+        
+        
+        axios
+        .post(apiUrl+'/guides', guideData , { headers })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.error(error);
+        });
+        },
+
+        
     },
 };
 </script>

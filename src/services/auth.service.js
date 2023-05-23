@@ -13,7 +13,7 @@ class AuthService {
       })
       .then(response => {
         if (response.data) {
-            localStorage.setItem('token', JSON.stringify(response.data.token));
+            localStorage.setItem('token', response.data.token);
             store.commit('CHANGE_TOKEN',response.data.token)
             delete response.data.token
           localStorage.setItem('userInfo', JSON.stringify(response.data));

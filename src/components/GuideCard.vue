@@ -7,6 +7,10 @@
     <div class="content">{{ guide.content }}</div>
     <p>Author: {{ guide.author.username }}</p>
     <p>Created at: {{ guide.created_at }}</p>
+
+    <!--<router-link :to="`/guides/${guide._id}`">-->
+      <button @click = "guidedet" >View more</button>
+    
   </div>
 </template>
 
@@ -18,14 +22,24 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods:{
+    guidedet(){
+      this.$router.push(`/guides/${this.guide._id}`)
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+
 .guide {
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
+}
+
+button{
+  position: absolute;
 }
 </style>

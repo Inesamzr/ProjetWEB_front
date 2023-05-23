@@ -5,11 +5,13 @@ import RegisterView from "./components/RegisterView.vue";
 import RechercheView from "./components/RechercheView.vue";
 import GuideCreationView from "./components/GuideCreationView.vue";
 
+
 // lazy-loaded
 const ProfileView = () => import("./components/ProfileView.vue")
 const BoardAdmin = () => import("./components/BoardAdmin.vue")
 const BoardModerator = () => import("./components/BoardModerator.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
+const GuideDetailsView = () => import("./components/GuideDetailsView.vue")
 /*const GuideCreationView = () => import("./components/GuideCreationView.vue")*/
 /*const GuideList = () => import("./components/GuideList.vue")*/
 
@@ -66,7 +68,17 @@ const routes = [
     path:"/guides/createguide",
     name:"createguide",
     component : GuideCreationView,
-  }
+  },
+  {
+    path: '/guides/:id',
+    name: 'GuideDetails',
+    component: GuideDetailsView,
+  },
+  //{
+    //path:'*',
+    //name:'error404page',
+    // component: pagenotfound
+  //}
 ];
 
 const router = createRouter({

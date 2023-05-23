@@ -96,14 +96,15 @@ data() {
         },
 
         submitGuide() {
-
+ 
 
         const token = this.getAuthToken();
         console.log(token);
         //ajouter le token à l'entete de la requête
         const headers = {
-          Authorization: `Bearer ${ token }`,
+          Authorization: `Bearer `+ token ,
         }; 
+        console.log(headers)
         
         const guideData = {
           title: this.guideData.title,
@@ -117,8 +118,8 @@ data() {
         
         axios
         .post(apiUrl+'/guides', guideData , { headers })
-        .then(response => {
-          console.log(response)
+        .then(() => {
+          this.$router.push("/guides")
         })
         .catch(error => {
           console.error(error);

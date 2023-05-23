@@ -83,34 +83,55 @@
                         </a>
                     </li>
                     
-                    <div v-if="!currentUser" class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <router-link to="/register" class="nav-link">
-                                <font-awesome-icon icon="user-plus" /> Sign Up
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/login" class="nav-link">
-                                <font-awesome-icon icon="sign-in-alt" /> Login
-                            </router-link>
-                        </li>
-                    </div>
+                    <li class="nav-item">
+                        <div v-if="!currentUser" class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <router-link to="/register" class="nav-link">
+                                    <font-awesome-icon 
+                                    :icon="['fas', 'user-plus']" 
+                                    class="fa-primary"
+                                    class-prefix="fa"
+                                    />
+                                    <span class="link-text">Sign Up</span> 
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/login" class="nav-link">
+                                    <font-awesome-icon 
+                                    :icon="['fas', 'right-to-bracket']"
+                                    class="fa-primary"
+                                    class-prefix="fa"
+                                    /> 
+                                    <span class="link-text">Login</span> 
+                                </router-link>
+                            </li>
+                        </div>
+                    </li>
 
-                    <div v-if="currentUser" class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <router-link to="/profile" class="nav-link">
-                                <font-awesome-icon icon="user" />
-                                {{ currentUser.username }}
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" @click.prevent="logOut">
-                                <font-awesome-icon icon="sign-out-alt" /> LogOut
-                            </a>
-                        </li>
-                    </div>
-                
-                    <li class="nav-item" id="themeButton">
+                    <li class="nav-item">
+                        <div v-if="currentUser" class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <router-link to="/profile" class="nav-link">
+                                    <font-awesome-icon :icon="['fas', 'user']" 
+                                    class="fa-primary"
+                                    class-prefix="fa"
+                                    />
+                                    <span class="link-text">{{ currentUser.username }}</span> 
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" @click.prevent="logOut">
+                                    <font-awesome-icon :icon="['fas', 'right-from-bracket']" 
+                                    class="fa-primary"
+                                    class-prefix="fa"
+                                    /> 
+                                    <span class="link-text">Log Out</span>
+                                    
+                                </a>
+                            </li>
+                        </div>
+                    </li>
+                    <!--<li class="nav-item" id="themeButton">
                         <a href="#" class="nav-link">
                         <font-awesome-icon
                                 :icon="['fas', 'moon']"
@@ -124,7 +145,7 @@
                             />
                         <span class="link-text">Themify</span>
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>        

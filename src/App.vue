@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 :root {
   --rouge: #a43f40ff;

@@ -34,7 +34,7 @@ export default {
   created() {
     this.fetchGuides();
   },
-  computed: {
+  computed: { 
     filteredGuides() {
       if (this.searchTerm && this.searchTerm.length > 0) {
         return this.guides.filter(guide => {

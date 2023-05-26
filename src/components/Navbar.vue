@@ -40,7 +40,7 @@
                     
                 
                     <li class="nav-item">
-                        <a class="nav-link">
+                        <a @click="showGuides('PC')" class="nav-link">
                         <font-awesome-icon
                                 :icon="['fas', 'computer']"
                                 class="fa-primary"
@@ -51,7 +51,7 @@
                     </li>
                 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a @click="showGuides('Console de salon')" class="nav-link">
                             <font-awesome-icon
                                 :icon="['fas', 'gamepad']"
                                 class="fa-primary"
@@ -62,7 +62,7 @@
                     </li>
                 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a @click="showGuides('Jeux mobile')" class="nav-link">
                             <font-awesome-icon
                                 :icon="['fas', 'mobile-screen-button']"
                                 class="fa-primary"
@@ -73,7 +73,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a @click="showGuides('Console portable')" class="nav-link">
                             <font-awesome-icon
                                 :icon="['fas', 'headphones-simple']"
                                 class="fa-primary"
@@ -218,6 +218,9 @@
                 store.commit('CHANGE_TOKEN',"");
                 this.$router.push('/home');
             },
+            showGuides(platform){
+                this.$router.push('/guides/plateforme/'+platform);
+            }
         }
     };
 

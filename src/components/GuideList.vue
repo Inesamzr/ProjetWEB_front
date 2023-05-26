@@ -2,7 +2,7 @@
     <div class="guide-list"> 
         <h1>Guides</h1>
         <ul >
-            <li v-for="guide in filteredGuides" :key="guide._id">
+            <li v-for="guide in guides" :key="guide._id">
                 <GuideCard :guide="guide" />
             </li>
             <li v-if="guides.length === 0"> 
@@ -29,38 +29,88 @@ export default {
     return {
       guides: [], //liste de tous les guides
       searchTerm: '',
+      platformName:'',
+      selectedGuideCategory: '',
+      selectedGameCategory: '',
     };
   },
-  created() {
+
+  mounted() {
+    let plat = this.$route.params;
+    console.log(plat)
+    //this.platformName = (plat == undefined)? '': plat.platform ; 
+    //this.platformName = plat?.platform ?? '';
+    this.platformName = plat && plat.platform ? plat.platform : '';
+    console.log(this.platformName); 
     this.fetchGuides();
   },
+  
   computed: { 
     filteredGuides() {
-      if (this.searchTerm && this.searchTerm.length > 0) {
+      //var filteredGuides = this.guides;
+
+      if (this.platformName && this.platformName !== 'All') {
+        console.log('filtre plateforme')
         return this.guides.filter(guide => {
-          return (guide.title ?? '').toLowerCase().includes(this.searchTerm.toLowerCase());
+          return guide.game.platforms.includes(this.platformName); 
         });
-      } else {
-        return this.guides;
       }
+
+      if (this.selectedGuideCategory) {
+        console.log('filtre guide catégorie')
+        return this.guides.filter((guide) => {
+          return guide.category.includes(this.selectedGuideCategory);
+        });
+      }
+
+      if (this.selectedGameCategory) {
+        console.log('filtre jeu catégorie')
+        return this.guides.filter((guide) => {
+          return guide.game.category.includes(this.selectedGameCategory);
+        });
+      }
+
+      if (this.searchTerm && this.searchTerm.length > 0) {
+        console.log('filtre recherche')
+        return this.guides.filter(guide => {
+        return (guide.title ?? '').toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
+      } else{
+        console.log('résultat')
+        return this.guides
+      }
+      //console.log(filteredGuides);
+      //return filteredGuides;
     },
   },
 
   methods: {
     fetchGuides() {
+
+      console.log(this.platformName)
+
+      var url = apiUrl+'/guides';
+
+      if(this.platformName != ''){
+        url = url + '/plateforme/' + this.platformName;
+      }
+
+      
+
       axios
-        .get(apiUrl+'/guides')
+        .get(url)
         .then(response => {
-          console.log(response.data)
-          this.guides = response.data;
+          if(response.data){
+            console.log(response.data)
+            this.guides = response.data;
+          }
+          
         })
         .catch(error => {
           console.error(error);
         });
     },
-    
-
-  }
+  },
 };
 </script>
 

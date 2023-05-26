@@ -13,6 +13,23 @@
             <font-awesome-icon :icon="['fas', 'times']"
             class="fa-red" />
           </button >
+
+          <div class="dropdowns">
+            <label class="dropdown-label">Guide Category:</label>
+            <select v-model="selectedGuideCategory">
+              <option v-for="category in guideCategories" :value="category._id" :key="category._id">
+                {{ category.name }}
+              </option>
+            </select>
+
+            <label class="dropdown-label">Game Category:</label>
+            <select v-model="selectedGameCategory">
+              <option v-for="category in gameCategories" :value="category._id" :key="category._id">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+
         </div>
         
         <button class="add_button" @click="add"> 
@@ -31,6 +48,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import GuideList from './GuideList.vue';
 import { faPlus, faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import axios from 'axios';
+import {apiUrl} from '../configs/api.config'
+
 
 library.add(faPlus)
 library.add(faTimes)
@@ -44,13 +64,21 @@ export default {
     FontAwesomeIcon
   },
 
+
   data() {
     return {
       searchTerm: '', // Terme de recherche saisi par l'utilisateur
+      guideCategories: [], // Catégories de guide
+      gameCategories: [], // Catégories de jeux
+      selectedGuideCategory: '',
+      selectedGameCategory: '',
     };
   },
-
-  
+ 
+  created() {
+  this.fetchGuideCategories();
+  this.fetchGameCategories();
+  },
 
   methods:{
     add(){
@@ -61,19 +89,45 @@ export default {
       if(this.searchTerm.length > 3){
         this.$emit('search', this.searchTerm);
       }
+      
     },
     clearSearch() {
       // Réinitialiser le terme de recherche et effacer le champ de recherche
       this.searchTerm = '';
-      this.handleSearch();
+      this.selectedGameCategory = '';
+      this.selectedGuideCategory = '';
+      this.handleSearch(); 
       
     },
     sendSearch() {
       // Exécuter une action lorsque l'utilisateur clique sur le bouton de recherche
-      console.log('Recherche effectuée:', this.searchTerm);
       this.$refs.guideList.searchTerm = this.searchTerm;
-      
+      this.$refs.guideList.platformName = this.platformName;
+      this.$refs.guideList.selectedGuideCategory = this.selectedGuideCategory; 
+      this.$refs.guideList.selectedGameCategory = this.selectedGameCategory;   
+      this.$refs.guideList.fetchGuides();//Quand je l'enlève les filtres marchent plus
     },
+    fetchGuideCategories() {
+     axios
+      .get(apiUrl + '/catguides')
+      .then(response => {
+        this.guideCategories = response.data.catguides;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    },
+    fetchGameCategories() {
+    axios
+      .get(apiUrl + '/jeu')
+      .then(response => {
+        this.gameCategories = response.data.jeux;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+
   }
 };
 </script>
@@ -185,6 +239,21 @@ export default {
   -webkit-transition: all 0.25s;
   box-shadow: none;
   transform: scale(0.98);
+}
+
+.dropdowns {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.dropdown-label {
+  display: block;
+  margin-right: 10px;
+}
+
+.dropdowns select {
+  width: 200px;
 }
 
 </style>

@@ -65,6 +65,11 @@ const routes = [
     component : RechercheView,
   },
   {
+    path:"/guides/plateforme/:platform",
+    name:"guidePlatform",
+    component : RechercheView,
+  },
+  {
     path:"/guides/createguide",
     name:"createguide",
     component : GuideCreationView,
@@ -100,4 +105,4 @@ router.beforeEach((to, from, next) => {
     }
   });
 
-export default router;
+export default router; 

@@ -41,7 +41,7 @@ export default {
 
   name: 'CreateGuideView',
   
-
+ 
 
 data() {
     return {
@@ -69,7 +69,6 @@ data() {
           return token;
         },
         fetchCategories(){
-          console.log('Calling fetchCategories');
           axios
           .get(apiUrl+'/catguides')
           .then(response => {
@@ -83,7 +82,6 @@ data() {
         },
 
         fetchGames(){
-          console.log('Calling fetchGames');
             axios
             .get(apiUrl+'/jeu')
             .then(response => {
@@ -115,7 +113,7 @@ data() {
           author: this.guideData.author,
         };
         
-        
+         
         axios
         .post(apiUrl+'/guides', guideData , { headers })
         .then(() => {

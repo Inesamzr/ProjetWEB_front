@@ -105,7 +105,7 @@ export default {
       this.$refs.guideList.platformName = this.platformName;
       this.$refs.guideList.selectedGuideCategory = this.selectedGuideCategory; 
       this.$refs.guideList.selectedGameCategory = this.selectedGameCategory;   
-      this.$refs.guideList.fetchGuides();//Quand je l'enlève les filtres marchent plus
+      //this.$refs.guideList.fetchGuides();//Quand je l'enlève les filtres marchent plus   
     },
     fetchGuideCategories() {
      axios
@@ -119,9 +119,9 @@ export default {
     },
     fetchGameCategories() {
     axios
-      .get(apiUrl + '/jeu')
+      .get(apiUrl + '/catjeu')
       .then(response => {
-        this.gameCategories = response.data.jeux;
+        this.gameCategories = response.data.catjeux;
       })
       .catch(error => {
         console.error(error);

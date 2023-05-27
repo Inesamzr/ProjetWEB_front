@@ -56,6 +56,9 @@
       if (!this.currentUser) {
         this.$router.push('/login');
       }
+      //appeler la route pour le userboard pour récuperer le tableau de liste de favoris par id
+      //fetch
+      //appeler la méthode en boucle qui get un guide par id
     }
   };
 </script>

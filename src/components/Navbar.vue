@@ -232,8 +232,8 @@
         font-family: 'Open Sans';
         --text-primary: #b6b6b6;
         --text-secondary: #ececec;
-        --bg-primary: #23232e;
-        --bg-secondary: #141418;
+        --bg-primary: #1a1a1a;
+        --bg-secondary: black;
         /*--bg-primary: black;
         --bg-secondary: #ced6d6ff;*/
         --transition-speed: 600ms;
@@ -274,7 +274,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
+        width: 14.5rem;
         
     }
   

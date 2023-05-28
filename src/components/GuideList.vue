@@ -1,10 +1,11 @@
 <template>
     <div class="guide-list"> 
-        <h1>Guides</h1>
-        <ul >
-            <li v-for="guide in filteredGuides" :key="guide._id">
+        <ul class="guide-list-container">
+          
+            <li v-for="guide in filteredGuides" :key="guide._id" class="guide-item">
                 <GuideCard :guide="guide" />
             </li>
+          
             <li v-if="filteredGuides.length === 0"> 
               <p class="message">No guides available.</p>
             </li>
@@ -116,27 +117,29 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 
-.guide-list {
-  margin-top: 20px;
-}
-
-.guide-list ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.guide-list li {
-  margin-bottom: 20px;
+.guide-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+  position: relative;
   
 }
 
-.message{
+.guide-list li {
+  width: 33.33% ;
+  margin-bottom: 20px;
+  display:flex;
+  
+}
+
+.message {
   margin-left: 100px;
 }
 
-.h1{
+.h1 {
   margin-left: 100px;
 }
  

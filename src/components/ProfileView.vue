@@ -24,7 +24,7 @@
           <font-awesome-icon 
           :icon="['fas', 'star']"
           class="liste"/>
-          {{role}}
+          {{role}} 
           </li>
       </ul>
     </span>
@@ -56,9 +56,6 @@
       if (!this.currentUser) {
         this.$router.push('/login');
       }
-      //appeler la route pour le userboard pour récuperer le tableau de liste de favoris par id
-      //fetch
-      //appeler la méthode en boucle qui get un guide par id
     }
   };
 </script>
@@ -67,7 +64,7 @@
 .container {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 40%;
   width: 400px;
   padding: 40px;
   margin: 20px auto;

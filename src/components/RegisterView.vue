@@ -128,7 +128,7 @@ export default {
 .login-box {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 40%;
   width: 400px;
   padding: 40px;
   margin: 20px auto;

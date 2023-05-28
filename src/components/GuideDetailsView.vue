@@ -1,22 +1,32 @@
 <template>
-  <div class="contenu">
-    <h1>Guide Details</h1>
-    <div v-if="guide">
-      <label class="container">
-        <!--<input type="checkbox" v-model="isFavorite" @change="toggleFavorite">
-        <svg height="24px" id="Layer_1" version="1.2" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path d="M9.362,9.158c0,0-3.16,0.35-5.268,0.584c-0.19,0.023-0.358,0.15-0.421,0.343s0,0.394,0.14,0.521    c1.566,1.429,3.919,3.569,3.919,3.569c-0.002,0-0.646,3.113-1.074,5.19c-0.036,0.188,0.032,0.387,0.196,0.506    c0.163,0.119,0.373,0.121,0.538,0.028c1.844-1.048,4.606-2.624,4.606-2.624s2.763,1.576,4.604,2.625    c0.168,0.092,0.378,0.09,0.541-0.029c0.164-0.119,0.232-0.318,0.195-0.505c-0.428-2.078-1.071-5.191-1.071-5.191    s2.353-2.14,3.919-3.566c0.14-0.131,0.202-0.332,0.14-0.524s-0.23-0.319-0.42-0.341c-2.108-0.236-5.269-0.586-5.269-0.586    s-1.31-2.898-2.183-4.83c-0.082-0.173-0.254-0.294-0.456-0.294s-0.375,0.122-0.453,0.294C10.671,6.26,9.362,9.158,9.362,9.158z"></path></g></g></svg>
-      -->
-      <button @click="toggleFavorite">{{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}</button>
-      </label>
-      <h2>{{ guide.title }}</h2>
-      <p>Objectif : {{ guide.objective }}</p>
-      <p>Categorie(s): <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></p>
-      <p>Jeu: {{guide.game.name}} </p>
-      <p>{{ guide.content }}</p>
-      <p>Author: {{ guide.author.username }}</p>
+  <div>
+
+    <button class="back_buttonDetail" @click="goBack">
+      <font-awesome-icon :icon="['fas', 'arrow-left']" />
+    </button>
+    <div v-if="isAdmin">
+      <button class="delete-button" @click="confirmDelete">
+       <svg viewBox="0 0 448 512" class="svgIconDelete"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+      </button>
+      <button class="edit-button" @click="editGuide">
+       edit
+      </button>
     </div>
-    <div v-else>
-      Loading...
+    <div class="contenuDetail">
+      <h1 >Guide Details</h1>
+      <div v-if="guide" class="containerDetail">
+        
+        <h2 class="titreDetail">{{ guide.title }}</h2> 
+        <p class="textDetail"><b>Objectif:</b> {{ guide.objective }}</p> 
+        <p class="textDetail"><b>Categorie(s):</b> <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></p>
+        <p class="textDetail"><b>Jeu:</b> {{guide.game.name}} </p>
+        <p class="textDetail">{{ guide.content }}</p>
+        <p class="textDetail"><b>Author:</b> {{ guide.author.username }}</p>
+        <p class="textDetail"><b>Created at:</b> {{ guide.created_at }}</p>   
+      </div>
+      <div v-else>
+        Loading...
+      </div>
     </div>
   </div>
 </template>
@@ -24,102 +34,219 @@
 <script>
 import axios from 'axios';
 import { apiUrl } from '../configs/api.config';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faArrowLeft)
 
 export default {
   name: 'GuideDetailsView',
+
+  component:{
+    FontAwesomeIcon
+  },
   data() {
     return {
       guide: null,
-      isFavorite:false,
     };
   },
   created() {
     this.fetchGuideDetails();
+  
   },
+  computed: {
+      currentUser() {
+        return JSON.parse(localStorage.getItem("userInfo"));
+      },
+      isAdmin() {
+      return this.currentUser && this.currentUser.roles.includes('admin');
+    }
+  },
+  
   methods: {
+    confirmDelete() {
+      if (confirm("Êtes-vous sûr de vouloir supprimer ce guide ?")) {
+        this.deleteGuide();
+      }
+    },
+    goBack() {
+          this.$router.push("/guides");
+        },
     fetchGuideDetails() {
-      
       const guideId = this.$route.params.id;
-
+      
        axios.get(apiUrl+`/guides/${guideId}`)
         .then(response => {
             this.guide = response.data;
-            this.isFavorite = this.isUserFavorite();
         })
         .catch(error => {
           console.error(error);
         });
     },
-    isUserFavorite() {
-      // Vérifie si l'utilisateur est connecté
-      if (!this.$store.state.user) {
-        return false;
-      }
+    deleteGuide() {
+      // Récupérez l'identifiant du guide à supprimer
+      const guideId = this.guide._id;
 
-      // Récupère l'identifiant de l'utilisateur actuel
-      const userId = this.$store.state.userInfo.id;
-
-      // Vérifie si le guide est dans la liste des guides favoris de l'utilisateur
-      return this.guide.author._id === userId || this.guide.author.favoriteGuides.includes(this.guide._id);
+      axios.delete(apiUrl + `/guides/${guideId}`)
+        .then(() => {
+          // Le guide a été supprimé avec succès, vous pouvez effectuer des actions supplémentaires si nécessaire
+          console.log('Guide supprimé');
+          this.$router.push('/guides');
+        })
+        .catch(error => {
+          console.error(error);
+        });
     },
-    toggleFavorite() {
-    // Récupère l'identifiant du guide
-    const guideId = this.guide._id;
-
-    // Effectue un appel à votre API pour ajouter ou supprimer le guide des favoris
-    const url = apiUrl + '/favorites';
-    const data = { guideId: guideId };
-
-    axios.post(url, data)
-      .then(response => {
-        // Met à jour l'état isFavorite du guide dans le store front-end
-        this.isFavorite = response.data.isFavorite;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    editGuide() {
+      const guideId = this.$route.params.id;
+      this.$router.push(`/guides/${guideId}/edit`);
     },
   },
 };
 </script>
 
 <style scoped>
-.contenu {
-    position : absolute;
-    margin-left: 100px;
-}
-
-.container input {
+.edit-button {
   position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #cf8665ff;
+  color: white;
+  font-weight: bold;
+  transition: all 0.5s;
+  margin-top: 602px;
+  margin-left: 400px;
 }
 
-.container {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
-.container svg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 50px;
+.delete-button{
   width: 50px;
-  transition: all 0.3s;
-  fill: #666;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: absolute;
+  margin-top: 600px;
+  margin-left: 500px;
 }
 
-.container svg:hover {
+.svgIconDelete {
+  width: 12px;
+  transition-duration: .3s;
+}
+
+.svgIconDelete path {
+  fill: white;
+}
+
+.delete-button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: #a43f40ff;
+  align-items: center;
+}
+
+.delete-button:hover .svgIconDelete {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.delete-button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.delete-button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+
+.edit-button:hover {
+  background-color: #cf8665ff;
+  box-shadow: 0 0 20px rgb(150, 97, 72);
   transform: scale(1.1);
 }
 
-.container input:checked ~ svg {
-  fill: #cf8665ff;
+.edit-button:active {
+  background-color: #cf8665ff;
+  transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
 }
 
+.contenuDetail {
+  position : absolute;
+  margin-left: 40px;
+  margin-top: 50px; 
+    
+}
+
+.containerDetail{
+  left: 30%;
+  padding: 40px;
+  background: rgba(0,0,0,.9);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  margin-top:50px;
+}
+
+.titreDetail{
+  background: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.textDetail{
+  color: white;
+}
+
+
+.back_buttonDetail{
+  position: absolute;
+  margin-top: 680px;
+  padding: 1px ;
+  border: 0;
+  border-radius: 80%;
+  background-color: #a43f40ff;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  width:40px;
+  height: 40px;
+}
+
+.back_buttonDetail:hover{
+  background-color: rgb(202, 80, 82);
+  box-shadow: 0 0 20px rgb(122, 47, 48);
+  transform: scale(1.1);
+}
+
+.back_buttonDetail:active{
+  background-color: rgb(122, 47, 48);
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
 </style>

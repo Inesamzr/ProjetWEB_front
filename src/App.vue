@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!--<div class="background-image"></div>-->
+    <div class="background-image"></div>
 
     <NavBar />
 
@@ -45,23 +45,20 @@ export default {
   overflow: hidden;
 }
 
-.container {
-  margin-left: 15rem; /* Pour décaler le contenu*/
-}
-
 .background-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(./image/fond_accueil.jpg);
-  background-size: cover;
+  background-image: url(./image/essai13.jpg);
+  background-size: contain; /* Ajuste l'image sans la déformer */
+  background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.5; 
-  z-index: 1;
+  opacity: 1;
   background-attachment: fixed;
 }
+
 
 h1, h2, h3, h4{
   font-family: 'Courier New', Courier, monospace;

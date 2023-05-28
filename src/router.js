@@ -12,6 +12,7 @@ const BoardAdmin = () => import("./components/BoardAdmin.vue")
 const BoardModerator = () => import("./components/BoardModerator.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
 const GuideDetailsView = () => import("./components/GuideDetailsView.vue")
+const GuideEditView = () => import("./components/GuideEditView.vue")
 /*const GuideCreationView = () => import("./components/GuideCreationView.vue")*/
 /*const GuideList = () => import("./components/GuideList.vue")*/
 
@@ -79,6 +80,16 @@ const routes = [
     name: 'GuideDetails',
     component: GuideDetailsView,
   },
+  {
+    path:'/guides/:id/edit',
+    name:'GuideEdit',
+    component: GuideEditView,
+  }
+  /*{
+    path: '/favorites/:id',
+    name:'addFavorite',
+    component: GuideCreationView,
+  }*/
   //{
     //path:'*',
     //name:'error404page',
@@ -92,10 +103,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/register', '/home','/guides',];
+    const publicPages = ['/login', '/register', '/home','/guides', '/guides/:id' ];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('userInfo');
   
+   
     // trying to access a restricted page + not logged in
     // redirect to login page
     if (authRequired && !loggedIn) {

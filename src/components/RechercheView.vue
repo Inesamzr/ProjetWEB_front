@@ -1,47 +1,46 @@
 <template>
-    <div>
-        <div class="input-group">
-          <input required="" autocomplete="off" type="text" name="text" v-model="searchTerm" @input="handleSearch" />
-          <label class="user-label">Rechercher guide</label>
+  <div>
+    <div class="input-group">
+      <input required="" autocomplete="off" type="text" name="text" v-model="searchTerm" @input="handleSearch" />
+      <label class="user-label">Search guide</label>
 
-          <button class="button-send" @click="sendSearch">
-            <font-awesome-icon :icon="['fas', 'check']"
-            class="fa-orange" />
-          </button>
+      <div class="dropdowns">
+        <select v-model="selectedGuideCategory" class="select">
+          <option value="">Game Category</option> 
+          <option v-for="category in guideCategories" :value="category._id" :key="category._id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+      <div class="dropdowns">
+        <select v-model="selectedGameCategory" class="select">
+          <option value="" class="textDROPDOWNS">Guide Category</option> 
+          <option class="textDROPDOWNS" v-for="category in gameCategories" :value="category._id" :key="category._id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
 
-          <button class= "button-clear" @click="clearSearch">
-            <font-awesome-icon :icon="['fas', 'times']"
-            class="fa-red" />
-          </button >
+      <button class="button-send" @click="sendSearch">
+        <font-awesome-icon :icon="['fas', 'check']" class="fa-orange" />
+      </button>
 
-          <div class="dropdowns">
-            <label class="dropdown-label">Guide Category:</label>
-            <select v-model="selectedGuideCategory">
-              <option v-for="category in guideCategories" :value="category._id" :key="category._id">
-                {{ category.name }}
-              </option>
-            </select>
+      <button class="button-clear" @click="clearSearch">
+        <font-awesome-icon :icon="['fas', 'times']" class="fa-red" />
+      </button>
+    
 
-            <label class="dropdown-label">Game Category:</label>
-            <select v-model="selectedGameCategory">
-              <option v-for="category in gameCategories" :value="category._id" :key="category._id">
-                {{ category.name }}
-              </option>
-            </select>
-          </div>
-
-        </div>
-        
-        <button class="add_button" @click="add"> 
-          <font-awesome-icon 
-            :icon="['fas', 'plus']" 
-            class="fa-primary" />
-          add
-        </button>
-
-        <GuideList ref="guideList" :searchTerm="searchTerm"/>
+    <button class="add_button" @click="add">
+      <font-awesome-icon :icon="['fas', 'plus']" class="fa-primary" />
+      <span class="add">create</span>
+    </button>
     </div>
+    <div class="guidesrecherche">
+      <GuideList ref="guideList" :searchTerm="searchTerm" />
+    </div>
+  </div>
 </template>
+
  
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -96,8 +95,11 @@ export default {
       this.searchTerm = '';
       this.selectedGameCategory = '';
       this.selectedGuideCategory = '';
-      this.handleSearch(); 
-      
+
+      // Réinitialiser les filtres de recherche dans le composant GuideList
+      this.$refs.guideList.searchTerm = '';
+      this.$refs.guideList.selectedGuideCategory = '';
+      this.$refs.guideList.selectedGameCategory = '';
     },
     sendSearch() {
       // Exécuter une action lorsque l'utilisateur clique sur le bouton de recherche
@@ -132,16 +134,14 @@ export default {
 };
 </script>
 
-<style scoped>
-.add_button{
-  margin-left: 200px;
-  position: absolute;
-}
+<style >
+
 
 .input-group{
-    margin-top: 20px;
-    margin-bottom: 20px; 
-    margin-left: 250px;   
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 100px;   
 }
 
 .fa-red{
@@ -149,16 +149,16 @@ export default {
 }
 
 .input-group input {
-    padding: 5px;
-    width: 200px;
-    margin-right: 10px;
-    color: #cf8665ff;
-    border: solid 1.5px  #cf8665ff;
-    border-radius: 1rem;
-    padding: 1rem;
-    font-size: 1rem;
-    background: none;
-    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  padding: 5px;
+  width: 200px;
+  margin-right: 10px;
+  color: #cf8665ff;
+  border: solid 1.5px  #cf8665ff;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  background: none;
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
 }
 
 .input-group .user-label {
@@ -179,7 +179,7 @@ export default {
 .input-group input:focus ~ .user-label, 
 .input-group input:valid ~ .user-label {
     transform: translateY(-50%) scale(0.8);
-    background-color: white;
+    background-color: #554f4dff;
     padding: 0 .2em;
     color: #cf8665ff;
 }
@@ -213,18 +213,18 @@ export default {
 }
 
 .input-group .button-send {
-    padding: 1px ;
-    margin-right: 4px;
-    border: 0;
-    margin-top: 10px;
-    border-radius: 80%;
-    background-color: #cf8665ff;
-    color: #ffffff;
-    font-weight: Bold;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    width:40px;
-    height: 40px;
+  padding: 1px ;
+  margin-right: 4px;
+  border: 0;
+  margin-top: 10px;
+  border-radius: 80%;
+  background-color: #cf8665ff;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  width:40px;
+  height: 40px;
 }
 
 .input-group .button-send:hover {
@@ -245,15 +245,56 @@ export default {
   display: flex;
   align-items: center;
   margin-top: 10px;
-}
-
-.dropdown-label {
-  display: block;
   margin-right: 10px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
-.dropdowns select {
+.dropdowns .select {
   width: 200px;
+  margin-left: 5px;
+  background: #554f4dff;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px #cf8665ff solid;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+
+
+.textDROPDOWNS{
+  color: #fff;
+}
+.add_button{
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #cf8665ff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-left: 100px;
+}
+
+.add_button:hover{
+  background-color: #cf8665ff;
+  box-shadow: 0px 5px 10px rgb(150, 97, 72);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.add{
+  margin-left: 5px;
+  margin-bottom: 20px;
 }
 
 </style>

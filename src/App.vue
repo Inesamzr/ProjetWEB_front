@@ -2,9 +2,15 @@
   <div id="app">
     <div class="background-image"></div>
 
+    
+
     <NavBar />
 
     <div class="container">
+
+      <div class="logo-container">
+        <img src="./image/logo2.png" alt="Logo">
+      </div>
       <router-view />
     </div>
    
@@ -45,18 +51,43 @@ export default {
   overflow: hidden;
 }
 
-.background-image {
+/*.background-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image: url(./image/essai13.jpg);
-  background-size: contain; /* Ajuste l'image sans la déformer */
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 1;
   background-attachment: fixed;
+}*/
+
+.background-image{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(./image/essai15.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  background-attachment: fixed;
+}
+
+.logo-container img {
+  width: 40%; 
+  height: auto; 
+  position: absolute;
+  top: 60%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  
 }
 
 

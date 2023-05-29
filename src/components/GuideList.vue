@@ -5,13 +5,16 @@
               <GuideCard :guide="guide" />
             </li>
             <div v-if="isLoading">
-              <p class="loading-message">Loading...</p>
+              <div class="loading">
+                <div class="ball"></div>
+                <div class="shadow"></div>
+              </div>
             </div>
             <div v-if="!isLoading && guides.length === 0">
               <p class="message">No guides available.</p>
             </div>
         </ul>
-        <div class="pagination">
+        <div class="pagination" v-if="!isLoading">
           <button class="prev-button" @click="currentPage--" :disabled="currentPage === 1">
             <font-awesome-icon :icon="['fas', 'arrow-left']" />
           </button>
@@ -147,6 +150,65 @@ export default {
 </script>
 
 <style >
+
+.loading{
+  margin-top: 250px;
+}
+.ball {
+  left:50%;
+  top:20%;
+  animation: float612 2.4s ease-in-out infinite;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  position: absolute;
+  background: radial-gradient( circle at 75% 30%, white 5px, #a43f40ff 8%, rgb(202, 92, 94) 100% 60%, rgb(202, 92, 94) 100%);
+  box-shadow: inset 0 0 20px rgb(175, 79, 81) 100%, inset 10px 0 46px #a43f40ff, inset 88px 0px 60px rgb(202, 92, 94) 100%, inset -20px -60px 100px rgb(214, 139, 141) 100%, inset 0 50px 140px rgb(214, 139, 141) 100%, 0 0 90px #fff;
+}
+
+@keyframes float612 {
+  0% {
+    transform: translatey(0px);
+  }
+
+  50% {
+    transform: translatey(-50px);
+  }
+
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.shadow {
+  left:50%;
+  top:20%;
+  background: rgb(202, 92, 94) 100%;
+  width: 80px;
+  height: 25px;
+  top: 65%;
+  animation: expand6234 2.4s ease-in-out infinite;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+@keyframes expand6234 {
+  0%,
+            100% {
+    transform: scale(0.6);
+  }
+
+  50% {
+    transform: scale(0.3);
+    filter: blur(5px);
+  }
+}
+
+
+
+
+
 .pagination{
   position: absolute;
   left: 50%;

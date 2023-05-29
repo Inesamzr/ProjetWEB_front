@@ -6,7 +6,7 @@
 
       <div class="dropdowns">
         <select v-model="selectedGuideCategory" class="select">
-          <option value="">Catégorie de jeu</option> 
+          <option value="">Catégorie de guide</option> 
           <option v-for="category in guideCategories" :value="category._id" :key="category._id">
             {{ category.name }}
           </option>
@@ -14,7 +14,7 @@
       </div>
       <div class="dropdowns">
         <select v-model="selectedGameCategory" class="select">
-          <option value="" class="textDROPDOWNS">Catégorie de guide</option> 
+          <option value="" class="textDROPDOWNS">Catégorie de jeu</option> 
           <option class="textDROPDOWNS" v-for="category in gameCategories" :value="category._id" :key="category._id">
             {{ category.name }}
           </option>

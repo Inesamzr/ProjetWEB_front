@@ -82,7 +82,7 @@ export default {
       AuthService.login(user)
       .then(() => {
         this.loading = false;
-        this.$router.push('/home');
+        this.$router.push('/guides');
       })
       .catch(error => {
         console.log(error)

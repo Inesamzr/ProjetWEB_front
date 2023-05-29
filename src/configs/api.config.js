@@ -1,3 +1,3 @@
 module.exports = {
-    apiUrl : "http://localhost:8080/api"
+    apiUrl : "https://alesio-api.onrender.com/api"
 }

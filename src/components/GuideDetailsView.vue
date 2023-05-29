@@ -8,10 +8,10 @@
         
         <h2 class="titreDetail">{{ guide.title }}</h2> 
         <p class="textDetail"><b>Objectif(s):</b> {{ guide.objective }}</p> 
-        <p class="textDetail"><b>Categorie:</b> <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></p>
+        <p class="textDetail"><b>Catégorie:</b> <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></p>
         <p class="textDetail"><b>Jeu:</b> {{guide.game.name}} </p>
         <p class="textDetail">{{ guide.content }}</p>
-        <p class="textDetail"><b>Auteurr:</b> {{ guide.author.username }}</p>
+        <p class="textDetail"><b>Auteur:</b> {{ guide.author.username }}</p>
         <p class="textDetail"><b>Date de création:</b> {{ guide.created_at }}</p> 
         <button class="back_buttonDetail" @click="goBack">
       <font-awesome-icon :icon="['fas', 'arrow-left']" />

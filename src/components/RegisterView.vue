@@ -21,6 +21,11 @@
             <ErrorMessage name="password" class="error-feedback" />
           </div>
 
+          <p class="signin_link">
+          Have an account?
+          <a @click="redirection" class="lien_log">Log in</a>
+          </p>
+
           <div class="form-group">
             <button  id="submit-button" :disabled="loading">
               <span
@@ -96,6 +101,10 @@ export default {
     }
   },
   methods: {
+    redirection(){
+      this.$router.push('/login')
+    },
+
     handleRegister(user) {
       this.message = "";
       this.successful = false;
@@ -125,6 +134,22 @@ export default {
 </script>
 
 <style scoped>
+
+.signin_link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.lien_log {
+  text-decoration: underline;
+  color: #7e8696;
+}
+.lien_log:hover{
+  color: white;
+}
+
 .login-box {
   position: absolute;
   top: 50%;

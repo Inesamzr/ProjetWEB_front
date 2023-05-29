@@ -18,6 +18,13 @@
           <ErrorMessage name="password" class="error-feedback" />
         </div>
 
+       
+          <p class="signup_link">
+          No account?
+          <a @click="redirection" class="lien">Sign up</a>
+          </p>
+        
+
         <div class="form-group">
           <button id="submit-button" :disabled="loading">
             <span
@@ -27,7 +34,7 @@
             <span>Login</span>
           </button>
         </div>
-
+        
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
             {{ message }}
@@ -77,6 +84,9 @@ export default {
     }
   },
   methods: {
+    redirection(){
+      this.$router.push('/register')
+    },
     handleLogin(user) {
       this.loading = true;
       AuthService.login(user)
@@ -101,6 +111,21 @@ export default {
 
 
 <style scoped>
+
+.signup_link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.lien {
+  text-decoration: underline;
+  color: #7e8696;
+}
+.lien:hover{
+  color: white;
+}
 .login-box {
   position: absolute;
   top: 50%;
@@ -177,7 +202,7 @@ export default {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  margin-left: 90px;
+  margin-left: 100px;
 }
 
 #submit-button:hover{

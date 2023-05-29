@@ -2,7 +2,7 @@
   <div>
     <div class="input-group">
       <input required="" autocomplete="off" type="text" name="text" v-model="searchTerm" @input="handleSearch" />
-      <!--<label class="user-label">Search guide</label>-->
+      <label class="user-label">Search guide</label>
 
       <div class="dropdowns">
         <select v-model="selectedGuideCategory" class="select">

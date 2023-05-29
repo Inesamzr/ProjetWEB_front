@@ -4,7 +4,7 @@
             <li v-for="guide in filteredGuides.slice(startIndex, endIndex + 1)" :key="guide._id" class="guide-item">
               <GuideCard :guide="guide" />
             </li>
-            <div v-if="isLoading">
+            <div v-if="isLoading && guides.length === 0" >
               <div class="loading">
                 <div class="ball"></div>
                 <div class="shadow"></div>

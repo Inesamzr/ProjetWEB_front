@@ -3,10 +3,10 @@
     <button class="back_buttonEdit" @click="goBack">
       <font-awesome-icon :icon="['fas', 'arrow-left']" />
       </button> 
-    <h1 class="edit_container">Edit guide</h1>
+    <h1 class="edit_container">Modifier le guide</h1>
     <div class="edit-guide-box-content">
         <form @submit.prevent="confirmUpdate">
-        <label for="title">Title:</label>
+        <label for="title">Titre:</label>
         <input type="text" id="title" v-model="guideData.title" required class="form-controlEdition">
 
         <div class="dropdownsEdition">
@@ -21,13 +21,13 @@
             </select>
         </div>
 
-        <label for="objective">Objective:</label>
+        <label for="objective">Objectif(s):</label>
         <textarea id="objective" v-model="guideData.objective" required class="form-controlEdition"></textarea>
 
-        <label>Content:</label>
+        <label>Contenu:</label>
         <textarea v-model="guideData.content" required class="form-controlEdition"></textarea>
 
-        <button type="submit" class="edition_button">update</button>
+        <button type="submit" class="edition_button">Mettre à jour</button>
         </form>
     </div>
   </div>
@@ -69,7 +69,7 @@ export default {
   methods: {
 
     confirmUpdate() {
-      if (confirm("Are you sure you want to update this guide?")) {
+      if (confirm("Êtes-vous sûr de vouloir supprimer ce guide ?")) {
         this.updateGuide();
       }
     },

@@ -3,7 +3,7 @@
     <div class="text">
       <h1 class="jumbotronGuideTitre">{{ truncateText(guide.title,40) }}</h1>
       <h2 class="jumbotronGuideJeu"><b>Jeu:</b> {{ guide.game.name }}</h2>
-      <h2 class="jumbotronGuideCat"><b>Categorie(s): </b>
+      <h2 class="jumbotronGuideCat"><b>Categorie: </b>
         <span v-for="(category, index) in guide.category" :key="category._id" >
           {{ truncateText(category.name, 40) }}
           <span v-if="index !== guide.category.length - 1">, </span>
@@ -14,11 +14,11 @@
           {{ platform.name}}<span v-if="index !== guide.game.platforms.length - 1">, </span>
         </span>
       </h2>
-      <h3 class="jumbotronGuideObj"><b>Objectif: </b> {{ truncateText(guide.objective,40) }}</h3>
+      <h3 class="jumbotronGuideObj"><b>Objectif(s): </b> {{ truncateText(guide.objective,40) }}</h3>
       
-      <p class="jumbotronGuideAuthor"><b>Author: </b> {{ guide.author.username }}</p>
+      <p class="jumbotronGuideAuthor"><b>Auteur: </b> {{ guide.author.username }}</p>
       
-      <button class="viewMoreButton" @click="guidedet">View more</button>
+      <button class="viewMoreButton" @click="guidedet">Voir plus</button>
     </div>
   </div>
 </template>

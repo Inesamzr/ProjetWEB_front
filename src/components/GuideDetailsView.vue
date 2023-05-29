@@ -3,32 +3,37 @@
 
     
     <div class="contenuDetail">
-      <h1 >Guide Details</h1>
+      <h1>Détails du guide</h1>
       <div v-if="guide" class="containerDetail">
         
         <h2 class="titreDetail">{{ guide.title }}</h2> 
-        <p class="textDetail"><b>Objectif:</b> {{ guide.objective }}</p> 
-        <p class="textDetail"><b>Categorie(s):</b> <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></p>
+        <p class="textDetail"><b>Objectif(s):</b> {{ guide.objective }}</p> 
+        <p class="textDetail"><b>Categorie:</b> <span v-for="(category, index) in guide.category" :key="category._id">{{ category.name }}<span v-if="index !== guide.category.length - 1">, </span></span></p>
         <p class="textDetail"><b>Jeu:</b> {{guide.game.name}} </p>
         <p class="textDetail">{{ guide.content }}</p>
         <p class="textDetail"><b>Author:</b> {{ guide.author.username }}</p>
-        <p class="textDetail"><b>Created at:</b> {{ guide.created_at }}</p>   
-      </div>
-      <div v-else>
-        Loading...
-      </div>
-    </div>
-    <button class="back_buttonDetail" @click="goBack">
+        <p class="textDetail"><b>Created at:</b> {{ guide.created_at }}</p> 
+        <button class="back_buttonDetail" @click="goBack">
       <font-awesome-icon :icon="['fas', 'arrow-left']" />
     </button>
     <div v-if="isAdmin">
       <button class="delete_buttonDetail" @click="confirmDelete">
-       <svg viewBox="0 0 448 512" class="svgIconDelete"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+       <svg viewBox="0 0 448 512" class="svgIconDeleteDetail"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
       </button>
       <button class="edit-button" @click="editGuide">
-       EDIT
+       EDITER
       </button>
     </div>
+
+      </div>
+      <div v-else>
+          <div class="loadingDetail">
+            <div class="ballDetail"></div>
+            <div class="shadowDetail"></div>
+          </div>
+        </div>
+    </div>
+    
   </div>
 </template>
 
@@ -67,7 +72,7 @@ export default {
   
   methods: {
     confirmDelete() {
-      if (confirm("Are you sure you want to delete this guide?")) {
+      if (confirm("Êtes-vous sûr de vouloir supprimer ce guide ?")) {
         this.deleteGuide();
       }
     },
@@ -91,8 +96,7 @@ export default {
 
       axios.delete(apiUrl + `/guides/${guideId}`)
         .then(() => {
-          // Le guide a été supprimé avec succès, vous pouvez effectuer des actions supplémentaires si nécessaire
-          console.log('Guide supprimé');
+          // Le guide a été supprimé avec succès
           this.$router.push('/guides');
         })
         .catch(error => {
@@ -108,6 +112,60 @@ export default {
 </script>
 
 <style scoped>
+
+
+.ballDetail {
+  left:50%;
+  top:50%;
+  margin-top: 200px;
+  animation: float612 2.4s ease-in-out infinite;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient( circle at 75% 30%, white 5px, #a43f40ff 8%, rgb(202, 92, 94) 100% 60%, rgb(202, 92, 94) 100%);
+  box-shadow: inset 0 0 20px rgb(175, 79, 81) 100%, inset 10px 0 46px #a43f40ff, inset 88px 0px 60px rgb(202, 92, 94) 100%, inset -20px -60px 100px rgb(214, 139, 141) 100%, inset 0 50px 140px rgb(214, 139, 141) 100%, 0 0 90px #fff;
+}
+
+@keyframes float612 {
+  0% {
+    transform: translatey(0px);
+  }
+
+  50% {
+    transform: translatey(-50px);
+  }
+
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.shadowDetail {
+  left:50%;
+  top:20%;
+  background: rgb(202, 92, 94) 100%;
+  width: 80px;
+  height: 25px;
+  top: 65%;
+  animation: expand6234 2.4s ease-in-out infinite;
+  position: relative;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+@keyframes expand6234 {
+  0%,
+            100% {
+    transform: scale(0.6);
+  }
+
+  50% {
+    transform: scale(0.3);
+    filter: blur(5px);
+  }
+}
+
 .edit-button {
   position: absolute;
   padding: 1.3em 3em;
@@ -155,12 +213,12 @@ export default {
   margin-top: 50px;
 }
 
-.svgIconDelete {
+.svgIconDeleteDetail {
   width: 12px;
   transition-duration: .3s;
 }
 
-.svgIconDelete path {
+.svgIconDeleteDetail path {
   fill: white;
 }
 
@@ -172,7 +230,7 @@ export default {
   align-items: center;
 }
 
-.delete_buttonDetail:hover .svgIconDelete {
+.delete_buttonDetail:hover .svgIconDeleteDetail {
   width: 50px;
   transition-duration: .3s;
   transform: translateY(60%);
@@ -181,7 +239,7 @@ export default {
 .delete_buttonDetail::before {
   position: relative;
   top: -20px;
-  content: "delete";
+  content: "supprimer";
   color: white;
   transition-duration: .3s;
   font-size: 2px;

@@ -9,7 +9,7 @@
       <Form @submit="handleRegister" :validation-schema="schema">
         <div v-if="!successful">
           <div class="user-box">
-            <Field name="username" type="text" class="form-control" placeholder="Username"/>
+            <Field name="username" type="text" class="form-control" placeholder="Pseudo"/>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
           <div class="user-box">
@@ -17,13 +17,13 @@
             <ErrorMessage name="email" class="error-feedback" />
           </div>
           <div class="user-box">
-            <Field name="password" type="password" class="form-control" placeholder="Password"/>
+            <Field name="password" type="password" class="form-control" placeholder="Mot de passe"/>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
 
           <p class="signin_link">
-          Have an account?
-          <a @click="redirection" class="lien_log">Log in</a>
+          Vous avez un compte ?
+          <a @click="redirection" class="lien_log">Se connecter</a>
           </p>
 
           <div class="form-group">
@@ -32,7 +32,7 @@
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
               ></span>
-              Sign Up
+              S'inscrire
             </button>
           </div>
         </div>
@@ -226,7 +226,7 @@ export default {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  margin-left: 90px;
+  margin-left: 70px;
 }
 
 #submit-button:hover{

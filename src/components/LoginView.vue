@@ -9,19 +9,19 @@
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="user-box">
           
-          <Field name="username" type="text" class="form-control" placeholder="Username" />
+          <Field name="username" type="text" class="form-control" placeholder="Pseudo" />
           <ErrorMessage name="username" class="error-feedback" />
         </div>
         <div class="user-box">
 
-          <Field name="password" type="password" class="form-control" placeholder="Password" />
+          <Field name="password" type="password" class="form-control" placeholder="Mot de passe" />
           <ErrorMessage name="password" class="error-feedback" />
         </div>
 
        
           <p class="signup_link">
-          No account?
-          <a @click="redirection" class="lien">Sign up</a>
+          Pas de compte ?
+          <a @click="redirection" class="lien">S'inscrire</a>
           </p>
         
 
@@ -31,7 +31,7 @@
               v-show="loading"
               class="spinner-border spinner-border-sm"
             ></span>
-            <span>Login</span>
+            <span>Se connecter</span>
           </button>
         </div>
         
@@ -202,7 +202,7 @@ export default {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  margin-left: 100px;
+  margin-left: 60px;
 }
 
 #submit-button:hover{

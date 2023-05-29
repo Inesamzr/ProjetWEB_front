@@ -2,7 +2,7 @@
   <div class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{currentUser.username}}</strong> Profile
+        Profile de <strong>{{currentUser.username}}</strong> 
       </h3>
     </header>
     <!--<p>
@@ -18,7 +18,7 @@
       {{currentUser.email}}
     </p>
     <span class="roles">
-      <strong>Authorities:</strong>
+      <strong>Roles :</strong>
       <ul class="role-list">
         <li v-for="role in currentUser.roles" :key="role">
           <font-awesome-icon 

@@ -92,7 +92,7 @@
                                     class="fa-primary"
                                     class-prefix="fa"
                                     />
-                                    <span class="link-text">Sign Up</span> 
+                                    <span class="link-text">Inscription</span> 
                                 </router-link>
                             </li>
                             <li class="nav-item">
@@ -102,7 +102,7 @@
                                     class="fa-primary"
                                     class-prefix="fa"
                                     /> 
-                                    <span class="link-text">Login</span> 
+                                    <span class="link-text">Connexion</span> 
                                 </router-link>
                             </li>
                         </div>
@@ -125,7 +125,7 @@
                                     class="fa-primary"
                                     class-prefix="fa"
                                     /> 
-                                    <span class="link-text">Log Out</span>
+                                    <span class="link-text">Se déconnecter</span>
                                     
                                 </a>
                             </li>

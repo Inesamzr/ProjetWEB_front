@@ -3,17 +3,17 @@
   <div class="text-wrapper">
     <div class="text-overlay">
         <h1 class="text-with-shadow">ALESIO</h1>
-        <p class="text-with-shadow">Welcome to Alesio, your ultimate destination for gaming enthusiasts. Explore our vast collection of detailed guides and exclusive resources that will help you master your favorite games. Whether you're a casual player seeking tips or a dedicated competitor looking for advanced strategies, we have everything you need.</p>
+        <p class="text-with-shadow">Bienvenue sur Alesio, votre destination ultime pour les passionnés de jeux vidéo. Explorez notre vaste collection de guides détaillés et de ressources exclusives qui vous aideront à maîtriser vos jeux préférés. Que vous soyez un joueur occasionnel à la recherche de conseils ou un compétiteur dévoué en quête de stratégies avancées, nous avons tout ce dont vous avez besoin.</p>
 
-        <p class="text-with-shadow">Discover our advanced sorting system that allows you to filter guides by platform, specific games, guide categories, and even game categories. Quickly find relevant information that will assist you in progressing through your virtual adventures. Additionally, our vibrant community enables you to share your own guides, tips, and discoveries, providing you with the opportunity to contribute and be part of a passionate community.</p>
+        <p class="text-with-shadow">Découvrez notre système de tri avancé qui vous permet de filtrer les guides par plateforme, jeux spécifiques, catégories de guides et même catégories de jeux. Trouvez rapidement des informations pertinentes qui vous aideront à progresser dans vos aventures virtuelles. De plus, notre communauté dynamique vous permet de partager vos propres guides, astuces et découvertes, vous offrant ainsi l'opportunité de contribuer et de faire partie d'une communauté passionnée.</p>
 
-        <p class="text-with-shadow"> Join us now and immerse yourself in a world of video games where learning and discovery are at your fingertips. Get ready to elevate your gaming skills and embark on unforgettable experiences. Whether you're a novice or a seasoned gamer, Alesio is here to accompany you on your gaming journey.
+        <p class="text-with-shadow">Rejoignez-nous dès maintenant et plongez dans un monde de jeux vidéo où l'apprentissage et la découverte sont à portée de main. Préparez-vous à développer vos compétences de jeu et à vivre des expériences inoubliables. Que vous soyez un novice ou un joueur chevronné, Alesio est là pour vous accompagner dans votre voyage vidéoludique.
         </p>
     </div>
   </div>
     <div class="fleche">
       <button class="cta">
-        <span class="hover-underline-animation" @click="start"> Start now </span>
+        <span class="hover-underline-animation" @click="start">Explorer</span>
         <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
             <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" data-name="Path 10" id="Path_10"></path>
         </svg>

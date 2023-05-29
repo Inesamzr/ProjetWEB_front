@@ -2,11 +2,11 @@
   <div>
     <div class="input-group">
       <input required="" autocomplete="off" type="text" name="text" v-model="searchTerm" @input="handleSearch" />
-      <label class="user-label">Search guide</label>
+      <label class="user-label">Rechercher un guide</label>
 
       <div class="dropdowns">
         <select v-model="selectedGuideCategory" class="select">
-          <option value="">Game Category</option> 
+          <option value="">Catégorie de jeu</option> 
           <option v-for="category in guideCategories" :value="category._id" :key="category._id">
             {{ category.name }}
           </option>
@@ -14,7 +14,7 @@
       </div>
       <div class="dropdowns">
         <select v-model="selectedGameCategory" class="select">
-          <option value="" class="textDROPDOWNS">Guide Category</option> 
+          <option value="" class="textDROPDOWNS">Catégorie de guide</option> 
           <option class="textDROPDOWNS" v-for="category in gameCategories" :value="category._id" :key="category._id">
             {{ category.name }}
           </option>
@@ -23,7 +23,7 @@
 
       <div class="dropdowns">
         <select v-model="selectedGameName" class="select">
-          <option value="" class="textDROPDOWNS">Game Name</option> 
+          <option value="" class="textDROPDOWNS">Nom de jeu</option> 
           <option lass="textDROPDOWNS" v-for="game in gameName" :key="game._id" :value="game._id">
             {{ game.name }}
           </option>
@@ -41,7 +41,7 @@
 
     <button class="add_button" @click="add">
       <font-awesome-icon :icon="['fas', 'plus']" class="fa-primary" />
-      <span class="add">create</span>
+      <span class="add">Créer</span>
     </button>
     </div>
     <div class="guidesrecherche">

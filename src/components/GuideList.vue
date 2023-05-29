@@ -1,16 +1,15 @@
 <template>
     <div class="guide-list"> 
         <ul class="guide-list-container">
-          
             <li v-for="guide in filteredGuides.slice(startIndex, endIndex + 1)" :key="guide._id" class="guide-item">
               <GuideCard :guide="guide" />
             </li>
-
-
-          
-            <li v-if="filteredGuides.length === 0"> 
+            <div v-if="isLoading">
+              <p class="loading-message">Loading...</p>
+            </div>
+            <div v-if="!isLoading && guides.length === 0">
               <p class="message">No guides available.</p>
-            </li>
+            </div>
         </ul>
         <div class="pagination">
           <button class="prev-button" @click="currentPage--" :disabled="currentPage === 1">
@@ -47,6 +46,7 @@ export default {
  
   data() {
     return {
+      isLoading: true,
       guides: [], //liste de tous les guides
       searchTerm: '',
       platformName:'',
@@ -122,6 +122,8 @@ export default {
       }
     },
     fetchGuides() {
+      this.isLoading = true; // Afficher le chargement
+
       var url = apiUrl+'/guides';
 
       if(this.platformName != ''){
@@ -131,13 +133,13 @@ export default {
         .get(url)
         .then(response => {
           if(response.data){
-            console.log(response.data)
             this.guides = response.data;
           }
-          
+          this.isLoading = false; 
         })
         .catch(error => {
           console.error(error);
+          this.isLoading = false;
         });
     },
   },

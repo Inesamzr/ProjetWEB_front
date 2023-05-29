@@ -21,6 +21,15 @@
         </select>
       </div>
 
+      <div class="dropdowns">
+        <select v-model="selectedGameName" class="select">
+          <option value="" class="textDROPDOWNS">Game Name</option> 
+          <option lass="textDROPDOWNS" v-for="game in gameName" :key="game._id" :value="game._id">
+            {{ game.name }}
+          </option>
+        </select>
+      </div>
+
       <button class="button-send" @click="sendSearch">
         <font-awesome-icon :icon="['fas', 'check']" class="fa-orange" />
       </button>
@@ -71,17 +80,20 @@ export default {
       gameCategories: [], // Catégories de jeux
       selectedGuideCategory: '',
       selectedGameCategory: '',
+      gameName:[],//nom de jeux
+      selectedGameName:'',
     };
   },
  
   created() {
   this.fetchGuideCategories();
   this.fetchGameCategories();
+  this.fetchGames();
   },
 
   methods:{
     add(){
-      this.$router.push("/guides/createguide");
+      this.$router.push("/guides/createguide"); 
     },
     handleSearch() {
       // Exécuter une action lorsque l'utilisateur saisit un terme de recherche
@@ -95,19 +107,21 @@ export default {
       this.searchTerm = '';
       this.selectedGameCategory = '';
       this.selectedGuideCategory = '';
+      this.selectedGameName = '';
 
       // Réinitialiser les filtres de recherche dans le composant GuideList
       this.$refs.guideList.searchTerm = '';
       this.$refs.guideList.selectedGuideCategory = '';
       this.$refs.guideList.selectedGameCategory = '';
+      this.$refs.guideList.selectedGameName='';
     },
     sendSearch() {
       // Exécuter une action lorsque l'utilisateur clique sur le bouton de recherche
       this.$refs.guideList.searchTerm = this.searchTerm;
       this.$refs.guideList.platformName = this.platformName;
       this.$refs.guideList.selectedGuideCategory = this.selectedGuideCategory; 
-      this.$refs.guideList.selectedGameCategory = this.selectedGameCategory;   
-      //this.$refs.guideList.fetchGuides();//Quand je l'enlève les filtres marchent plus   
+      this.$refs.guideList.selectedGameCategory = this.selectedGameCategory; 
+      this.$refs.guideList.selectedGameName = this.selectedGameName;    
     },
     fetchGuideCategories() {
      axios
@@ -128,7 +142,17 @@ export default {
       .catch(error => {
         console.error(error);
       });
-    }
+    },
+    fetchGames(){
+      axios
+      .get(apiUrl+'/jeu')
+      .then(response => {
+        this.gameName = response.data.jeux;
+      })
+      .catch(error => {
+          console.error(error)
+      });
+    },
 
   }
 };
@@ -283,7 +307,8 @@ export default {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  margin-left: 100px;
+  margin-left: 800px;
+  margin-top: 20px;
 }
 
 .add_button:hover{

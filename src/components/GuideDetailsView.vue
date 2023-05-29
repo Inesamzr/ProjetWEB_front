@@ -1,17 +1,7 @@
 <template>
   <div>
 
-    <button class="back_buttonDetail" @click="goBack">
-      <font-awesome-icon :icon="['fas', 'arrow-left']" />
-    </button>
-    <div v-if="isAdmin">
-      <button class="delete-button" @click="confirmDelete">
-       <svg viewBox="0 0 448 512" class="svgIconDelete"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
-      </button>
-      <button class="edit-button" @click="editGuide">
-       edit
-      </button>
-    </div>
+    
     <div class="contenuDetail">
       <h1 >Guide Details</h1>
       <div v-if="guide" class="containerDetail">
@@ -27,6 +17,17 @@
       <div v-else>
         Loading...
       </div>
+    </div>
+    <button class="back_buttonDetail" @click="goBack">
+      <font-awesome-icon :icon="['fas', 'arrow-left']" />
+    </button>
+    <div v-if="isAdmin">
+      <button class="delete_buttonDetail" @click="confirmDelete">
+       <svg viewBox="0 0 448 512" class="svgIconDelete"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+      </button>
+      <button class="edit-button" @click="editGuide">
+       EDIT
+      </button>
     </div>
   </div>
 </template>
@@ -66,7 +67,7 @@ export default {
   
   methods: {
     confirmDelete() {
-      if (confirm("Êtes-vous sûr de vouloir supprimer ce guide ?")) {
+      if (confirm("Are you sure you want to delete this guide?")) {
         this.deleteGuide();
       }
     },
@@ -109,18 +110,33 @@ export default {
 <style scoped>
 .edit-button {
   position: absolute;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
   background-color: #cf8665ff;
-  color: white;
-  font-weight: bold;
-  transition: all 0.5s;
-  margin-top: 602px;
-  margin-left: 400px;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-left: 350px;
+  margin-top: 50px;
 }
 
-.delete-button{
+.edit-button:hover{
+  background-color: #cf8665ff;
+  box-shadow: 0px 5px 10px rgb(150, 97, 72);
+  color: #fff;
+  transform: translateY(-7px);
+}
+  
+
+
+.delete_buttonDetail{
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -135,8 +151,8 @@ export default {
   transition-duration: .3s;
   overflow: hidden;
   position: absolute;
-  margin-top: 600px;
   margin-left: 500px;
+  margin-top: 50px;
 }
 
 .svgIconDelete {
@@ -148,7 +164,7 @@ export default {
   fill: white;
 }
 
-.delete-button:hover {
+.delete_buttonDetail:hover {
   width: 140px;
   border-radius: 50px;
   transition-duration: .3s;
@@ -156,22 +172,22 @@ export default {
   align-items: center;
 }
 
-.delete-button:hover .svgIconDelete {
+.delete_buttonDetail:hover .svgIconDelete {
   width: 50px;
   transition-duration: .3s;
   transform: translateY(60%);
 }
 
-.delete-button::before {
-  position: absolute;
+.delete_buttonDetail::before {
+  position: relative;
   top: -20px;
-  content: "Delete";
+  content: "delete";
   color: white;
   transition-duration: .3s;
   font-size: 2px;
 }
 
-.delete-button:hover::before {
+.delete_buttonDetail:hover::before {
   font-size: 13px;
   opacity: 1;
   transform: translateY(30px);
@@ -192,9 +208,9 @@ export default {
 }
 
 .contenuDetail {
-  position : absolute;
-  margin-left: 40px;
+  position : relative;
   margin-top: 50px; 
+  margin-right: 80px;
     
 }
 
@@ -223,7 +239,7 @@ export default {
 
 .back_buttonDetail{
   position: absolute;
-  margin-top: 680px;
+  margin-top: 50px;
   padding: 1px ;
   border: 0;
   border-radius: 80%;

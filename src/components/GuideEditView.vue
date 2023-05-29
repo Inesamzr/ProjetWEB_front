@@ -3,7 +3,7 @@
     <button class="back_buttonEdit" @click="goBack">
       <font-awesome-icon :icon="['fas', 'arrow-left']" />
       </button> 
-    <h1 class="edit_container">Modifier le guide</h1>
+    <h1 class="edit_container">Edit guide</h1>
     <div class="edit-guide-box-content">
         <form @submit.prevent="confirmUpdate">
         <label for="title">Title:</label>
@@ -27,7 +27,7 @@
         <label>Content:</label>
         <textarea v-model="guideData.content" required class="form-controlEdition"></textarea>
 
-        <button type="submit" class="edition_button">Mettre à jour</button>
+        <button type="submit" class="edition_button">update</button>
         </form>
     </div>
   </div>
@@ -67,9 +67,9 @@ export default {
     this.fetchGames();
   },
   methods: {
-      
+
     confirmUpdate() {
-      if (confirm("Êtes-vous sûr de vouloir mettre à jour ce guide ?")) {
+      if (confirm("Are you sure you want to update this guide?")) {
         this.updateGuide();
       }
     },
@@ -83,7 +83,7 @@ export default {
             title: title,
             objective: objective,
             content: content,
-            category: category._id,
+            category: category[0]._id,
             game: game._id 
         };
         })
@@ -116,25 +116,6 @@ export default {
             console.error(error)
         });
     },
-    /*fetchGuideDetails() {
-    const guideId = this.$route.params.id;
-
-    axios.get(apiUrl + `/guides/${guideId}`)
-        .then(response => {
-        const { title, objective, content,category,game } = response.data;
-        this.guideData = {
-            title: title,
-            objective: objective,
-            content: content,
-            category:category,
-            game:game,
-            };
-        })
-        .catch(error => {
-        console.error(error);
-        });
-    },*/
-
     updateGuide() {
       const guideId = this.$route.params.id;
 
@@ -253,7 +234,7 @@ export default {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  margin-left: 60px;
+  margin-left: 80px;
   margin-top: 30px;
 }
 

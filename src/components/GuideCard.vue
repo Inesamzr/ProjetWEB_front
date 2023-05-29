@@ -1,21 +1,20 @@
 <template>
   <div class="guide" >
     <div class="text">
-      <h1 class="jumbotronGuideTitre">{{ truncateText(guide.title,10) }}</h1>
+      <h1 class="jumbotronGuideTitre">{{ truncateText(guide.title,40) }}</h1>
       <h2 class="jumbotronGuideJeu"><b>Jeu:</b> {{ guide.game.name }}</h2>
       <h2 class="jumbotronGuideCat"><b>Categorie(s): </b>
         <span v-for="(category, index) in guide.category" :key="category._id" >
-          {{ truncateText(category.name, 20) }}
+          {{ truncateText(category.name, 40) }}
           <span v-if="index !== guide.category.length - 1">, </span>
         </span>
       </h2>
       <h2 class="jumbotronGuidePlat"><b>Plateforme(s): </b> 
         <span v-for="(platform, index) in guide.game.platforms" :key="platform._id">
-          {{ platform.name }}
-          <span v-if="index !== guide.game.platforms.length - 1">, </span>
+          {{ platform.name}}<span v-if="index !== guide.game.platforms.length - 1">, </span>
         </span>
       </h2>
-      <h3 class="jumbotronGuideObj"><b>Objectif: </b> {{ truncateText(guide.objective,20) }}</h3>
+      <h3 class="jumbotronGuideObj"><b>Objectif: </b> {{ truncateText(guide.objective,40) }}</h3>
       
       <p class="jumbotronGuideAuthor"><b>Author: </b> {{ guide.author.username }}</p>
       

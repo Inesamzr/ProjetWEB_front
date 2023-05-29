@@ -92,7 +92,7 @@ data() {
             console.log('Response from fetchCategories:', response);
             this.categoriesData = response.data.catguides;
         
-          })
+          }) 
           .catch(error => {
               console.error(error);
           });
@@ -112,7 +112,7 @@ data() {
 
         submitGuide() {
  
-
+  
         const token = this.getAuthToken();
         //ajouter le token à l'entete de la requête
         const headers = {
@@ -132,7 +132,7 @@ data() {
         axios
         .post(apiUrl+'/guides', guideData , { headers })
         .then(() => {
-          this.$router.push("/guides")
+          this.$router.push("/guides");
         })
         .catch(error => {
           console.error(error);

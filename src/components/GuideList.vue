@@ -2,14 +2,25 @@
     <div class="guide-list"> 
         <ul class="guide-list-container">
           
-            <li v-for="guide in filteredGuides" :key="guide._id" class="guide-item">
-                <GuideCard :guide="guide" />
+            <li v-for="guide in filteredGuides.slice(startIndex, endIndex + 1)" :key="guide._id" class="guide-item">
+              <GuideCard :guide="guide" />
             </li>
+
+
           
             <li v-if="filteredGuides.length === 0"> 
               <p class="message">No guides available.</p>
             </li>
         </ul>
+        <div class="pagination">
+          <button class="prev-button" @click="currentPage--" :disabled="currentPage === 1">
+            <font-awesome-icon :icon="['fas', 'arrow-left']" />
+          </button>
+          <span class="currentpage center">{{ currentPage }}</span>
+          <button class="next-button" @click="currentPage++" :disabled="endIndex >= filteredGuides.length - 1">
+            <font-awesome-icon :icon="['fas', 'arrow-right']" />
+          </button>
+        </div>
     </div>
 </template>
 
@@ -17,6 +28,13 @@
 import GuideCard from './GuideCard.vue';
 import axios from 'axios';
 import {apiUrl} from '../configs/api.config'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faArrowLeft)
+library.add(faArrowRight)
+
 
 export default {  
 
@@ -24,6 +42,7 @@ export default {
 
   components: {
     GuideCard,
+    FontAwesomeIcon
   },
  
   data() {
@@ -33,6 +52,8 @@ export default {
       platformName:'',
       selectedGuideCategory: '',
       selectedGameCategory: '',
+      selectedGameName:'',
+      currentPage: 1, // numéro de la page actuelle
     };
   },
   created(){
@@ -49,16 +70,14 @@ export default {
   },
   
   computed: { 
+    //pagination
+    startIndex() {
+      return (this.currentPage - 1) * 12; // 12 guides par page
+    },
+    endIndex() {
+      return this.currentPage * 12 - 1;
+    },   
     filteredGuides() {
-      console.log(this.guides)
-      //var filteredGuides = this.guides;
-      /*if (this.platformName && this.platformName !== 'All') {
-        console.log('filtre plateforme')
-        return this.guides.filter(guide => {
-          return guide.game.platforms.includes(this.platformName); 
-        });
-      }*/
-
       if (this.selectedGuideCategory) {
         return this.guides.filter((guide) => {
           return guide.category.some(cat => cat._id == this.selectedGuideCategory);
@@ -66,34 +85,42 @@ export default {
       }
 
       if (this.selectedGameCategory) {
-        console.log('filtre jeu catégorie')
-        console.log(this.selectedGameCategory)
         return this.guides.filter((guide) => {
           return guide.game.category.includes(this.selectedGameCategory);
         });
       }
+      if (this.selectedGameName) {
+        console.log(this.selectedGameName)
+        return this.guides.filter((guide) => {
+          return guide.game._id === this.selectedGameName;
+        });
+        
+      }
 
       if (this.searchTerm && this.searchTerm.length > 0) {
-        console.log(this.searchTerm)
-        console.log('filtre recherche')
-        console.log(this.guides.length)
         let x = this.guides.filter(guide => {
           
           return (guide.title ?? '').toLowerCase().includes(this.searchTerm.toLowerCase());
         });
-        console.log(this.guides.length)
-        console.log(x)
         return x
       } else{
-        console.log('résultat')
         return this.guides
       }
-      //console.log(filteredGuides);
-      //return filteredGuides;
     }
   },
 
   methods: {
+    //pagination
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage() {
+      if (this.endIndex < this.filteredGuides.length - 1) {
+        this.currentPage++;
+      }
+    },
     fetchGuides() {
       var url = apiUrl+'/guides';
 
@@ -118,14 +145,57 @@ export default {
 </script>
 
 <style >
+.pagination{
+  position: absolute;
+  left: 50%;
+  align-items: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.currentpage{
+  font-size: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: white;
+  
+}
+
+.prev-button,.next-button{
+  padding: 1px ;
+  margin-right: 4px;
+  border: 0;
+  margin-top: 10px;
+  border-radius: 80%;
+  background-color: #cf8665ff;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  width:40px;
+  height: 40px;
+}
+
+.prev-button:hover, .next-button:hover{
+  background-color: rgb(231, 150, 112);
+  box-shadow: 0 0 20px rgb(153, 99, 73);
+  transform: scale(1.1);
+}
+
+.prev-button:active ,.next-button:active{
+  background-color: rgb(158, 102, 76);
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
 
 .guide-list-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 20px;
   position: relative;
-  
 }
 
 .guide-list li {

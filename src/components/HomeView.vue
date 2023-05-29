@@ -45,7 +45,6 @@ export default {
 
 .text-with-shadow {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Ajustez les valeurs ci-dessus selon vos préférences */
   }
 
 .text-wrapper {
